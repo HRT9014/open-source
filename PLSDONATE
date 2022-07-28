@@ -1,0 +1,657 @@
+-- Gui to Lua
+-- Version: 3.2
+
+-- Instances:
+
+local p = Instance.new("ScreenGui")
+local Pages = Instance.new("Folder")
+local two = Instance.new("Frame")
+local UICorner = Instance.new("UICorner")
+local UIGradient = Instance.new("UIGradient")
+local back = Instance.new("TextButton")
+local TextLabel = Instance.new("TextLabel")
+local ScrollingFrame = Instance.new("ScrollingFrame")
+local Btns = Instance.new("Folder")
+local UIListLayout = Instance.new("UIListLayout")
+local TextButton = Instance.new("TextButton")
+local UICorner_2 = Instance.new("UICorner")
+local credits = Instance.new("TextButton")
+local UICorner_3 = Instance.new("UICorner")
+local afk = Instance.new("TextButton")
+local UICorner_4 = Instance.new("UICorner")
+local History = Instance.new("TextButton")
+local UICorner_5 = Instance.new("UICorner")
+local Useful = Instance.new("TextButton")
+local UICorner_6 = Instance.new("UICorner")
+local use = Instance.new("TextButton")
+local UICorner_7 = Instance.new("UICorner")
+local Destroy = Instance.new("TextButton")
+local UICorner_8 = Instance.new("UICorner")
+local three = Instance.new("Frame")
+local UICorner_9 = Instance.new("UICorner")
+local UIGradient_2 = Instance.new("UIGradient")
+local back_2 = Instance.new("TextButton")
+local TextLabel_2 = Instance.new("TextLabel")
+local ScrollingFrame_2 = Instance.new("ScrollingFrame")
+local plrs = Instance.new("Folder")
+local UIListLayout_2 = Instance.new("UIListLayout")
+local example = Instance.new("TextLabel")
+local UICorner_10 = Instance.new("UICorner")
+local one = Instance.new("Frame")
+local UICorner_11 = Instance.new("UICorner")
+local TextLabel_3 = Instance.new("TextLabel")
+local UICorner_12 = Instance.new("UICorner")
+local TextButton_2 = Instance.new("TextButton")
+local UICorner_13 = Instance.new("UICorner")
+local TextBox = Instance.new("TextBox")
+local UICorner_14 = Instance.new("UICorner")
+local TextLabel_4 = Instance.new("TextLabel")
+local UICorner_15 = Instance.new("UICorner")
+local Result = Instance.new("TextBox")
+local UICorner_16 = Instance.new("UICorner")
+local TextLabel_5 = Instance.new("TextLabel")
+local UICorner_17 = Instance.new("UICorner")
+local param = Instance.new("ImageButton")
+local UICorner_18 = Instance.new("UICorner")
+local UIGradient_3 = Instance.new("UIGradient")
+local Notification = Instance.new("TextLabel")
+
+--Properties:
+
+p.Name = "p"
+p.Parent = game.CoreGui
+p.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+
+Pages.Name = "Pages"
+Pages.Parent = p
+
+two.Name = "two"
+two.Parent = Pages
+two.Active = true
+two.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+two.Draggable = true
+two.Position = UDim2.new(0.181003273, 0, 0.0376292914, 0)
+two.Selectable = true
+two.Size = UDim2.new(0, 250, 0, 381)
+
+UICorner.Parent = two
+
+UIGradient.Color = ColorSequence.new{ColorSequenceKeypoint.new(0.00, Color3.fromRGB(170, 0, 127)), ColorSequenceKeypoint.new(1.00, Color3.fromRGB(117, 117, 117))}
+UIGradient.Parent = two
+
+back.Name = "back"
+back.Parent = two
+back.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+back.BackgroundTransparency = 1.000
+back.Size = UDim2.new(0.150000006, 0, 0.100000001, 0)
+back.Font = Enum.Font.SourceSans
+back.Text = "<"
+back.TextColor3 = Color3.fromRGB(255, 0, 0)
+back.TextScaled = true
+back.TextSize = 14.000
+back.TextWrapped = true
+
+TextLabel.Parent = two
+TextLabel.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+TextLabel.BackgroundTransparency = 1.000
+TextLabel.Size = UDim2.new(1, 0, 0.125, 0)
+TextLabel.Font = Enum.Font.Cartoon
+TextLabel.Text = "Settings"
+TextLabel.TextColor3 = Color3.fromRGB(0, 0, 0)
+TextLabel.TextScaled = true
+TextLabel.TextSize = 14.000
+TextLabel.TextWrapped = true
+
+ScrollingFrame.Parent = two
+ScrollingFrame.Active = true
+ScrollingFrame.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+ScrollingFrame.BackgroundTransparency = 1.000
+ScrollingFrame.Position = UDim2.new(0, 0, 0.144356951, 0)
+ScrollingFrame.Size = UDim2.new(1, 0, 0.800000012, 0)
+ScrollingFrame.CanvasSize = UDim2.new(0, 0, 3, 0)
+
+Btns.Name = "Btns"
+Btns.Parent = ScrollingFrame
+
+UIListLayout.Parent = Btns
+UIListLayout.HorizontalAlignment = Enum.HorizontalAlignment.Center
+UIListLayout.SortOrder = Enum.SortOrder.LayoutOrder
+UIListLayout.Padding = UDim.new(0, 35)
+
+TextButton.Name = "@"
+TextButton.Parent = Btns
+TextButton.BackgroundColor3 = Color3.fromRGB(170, 0, 0)
+TextButton.Size = UDim2.new(0.899999976, 0, 0, 50)
+TextButton.Font = Enum.Font.SourceSans
+TextButton.Text = "enable/disable @"
+TextButton.TextColor3 = Color3.fromRGB(255, 255, 255)
+TextButton.TextScaled = true
+TextButton.TextSize = 14.000
+TextButton.TextWrapped = true
+
+UICorner_2.CornerRadius = UDim.new(5, 0)
+UICorner_2.Parent = TextButton
+
+credits.Name = "credits"
+credits.Parent = Btns
+credits.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+credits.Size = UDim2.new(0.899999976, 0, 0, 50)
+credits.Font = Enum.Font.SourceSans
+credits.Text = "Creators"
+credits.TextColor3 = Color3.fromRGB(255, 255, 255)
+credits.TextScaled = true
+credits.TextSize = 14.000
+credits.TextWrapped = true
+
+UICorner_3.CornerRadius = UDim.new(5, 0)
+UICorner_3.Parent = credits
+
+afk.Name = "afk"
+afk.Parent = Btns
+afk.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+afk.Size = UDim2.new(0.899999976, 0, 0, 50)
+afk.Font = Enum.Font.SourceSans
+afk.Text = "Anti afk"
+afk.TextColor3 = Color3.fromRGB(255, 255, 255)
+afk.TextScaled = true
+afk.TextSize = 14.000
+afk.TextWrapped = true
+
+UICorner_4.CornerRadius = UDim.new(5, 0)
+UICorner_4.Parent = afk
+
+History.Name = "History"
+History.Parent = Btns
+History.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+History.Size = UDim2.new(0.899999976, 0, 0, 50)
+History.Font = Enum.Font.SourceSans
+History.Text = "History of Donators"
+History.TextColor3 = Color3.fromRGB(255, 255, 255)
+History.TextScaled = true
+History.TextSize = 14.000
+History.TextWrapped = true
+
+UICorner_5.CornerRadius = UDim.new(5, 0)
+UICorner_5.Parent = History
+
+Useful.Name = "Useful"
+Useful.Parent = Btns
+Useful.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+Useful.Size = UDim2.new(0.899999976, 0, 0, 50)
+Useful.Font = Enum.Font.SourceSans
+Useful.Text = "Useful script"
+Useful.TextColor3 = Color3.fromRGB(255, 255, 255)
+Useful.TextScaled = true
+Useful.TextSize = 14.000
+Useful.TextWrapped = true
+
+UICorner_6.CornerRadius = UDim.new(5, 0)
+UICorner_6.Parent = Useful
+
+use.Name = "use"
+use.Parent = Btns
+use.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+use.Size = UDim2.new(0.899999976, 0, 0, 50)
+use.Font = Enum.Font.SourceSans
+use.Text = "How to use"
+use.TextColor3 = Color3.fromRGB(255, 255, 255)
+use.TextScaled = true
+use.TextSize = 14.000
+use.TextWrapped = true
+
+UICorner_7.CornerRadius = UDim.new(5, 0)
+UICorner_7.Parent = use
+
+Destroy.Name = "Destroy"
+Destroy.Parent = Btns
+Destroy.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+Destroy.Size = UDim2.new(0.899999976, 0, 0, 50)
+Destroy.Font = Enum.Font.SourceSans
+Destroy.Text = "Destroy the ui"
+Destroy.TextColor3 = Color3.fromRGB(255, 255, 255)
+Destroy.TextScaled = true
+Destroy.TextSize = 14.000
+Destroy.TextWrapped = true
+
+UICorner_8.CornerRadius = UDim.new(5, 0)
+UICorner_8.Parent = Destroy
+
+three.Name = "three"
+three.Parent = Pages
+three.Active = true
+three.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+three.Draggable = true
+three.Position = UDim2.new(0.124841027, 17, -0.000726871192, 56)
+three.Selectable = true
+three.Size = UDim2.new(0, 250, 0, 381)
+three.Visible = false
+
+UICorner_9.Parent = three
+
+UIGradient_2.Color = ColorSequence.new{ColorSequenceKeypoint.new(0.00, Color3.fromRGB(170, 0, 127)), ColorSequenceKeypoint.new(1.00, Color3.fromRGB(117, 117, 117))}
+UIGradient_2.Parent = three
+
+back_2.Name = "back"
+back_2.Parent = three
+back_2.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+back_2.BackgroundTransparency = 1.000
+back_2.Size = UDim2.new(0.150000006, 0, 0.100000001, 0)
+back_2.Font = Enum.Font.SourceSans
+back_2.Text = "<"
+back_2.TextColor3 = Color3.fromRGB(255, 0, 0)
+back_2.TextScaled = true
+back_2.TextSize = 14.000
+back_2.TextWrapped = true
+
+TextLabel_2.Parent = three
+TextLabel_2.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+TextLabel_2.BackgroundTransparency = 1.000
+TextLabel_2.Size = UDim2.new(1, 0, 0.125, 0)
+TextLabel_2.Font = Enum.Font.Cartoon
+TextLabel_2.Text = "History"
+TextLabel_2.TextColor3 = Color3.fromRGB(0, 0, 0)
+TextLabel_2.TextScaled = true
+TextLabel_2.TextSize = 14.000
+TextLabel_2.TextWrapped = true
+
+ScrollingFrame_2.Parent = three
+ScrollingFrame_2.Active = true
+ScrollingFrame_2.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+ScrollingFrame_2.BackgroundTransparency = 1.000
+ScrollingFrame_2.Position = UDim2.new(0, 0, 0.144356951, 0)
+ScrollingFrame_2.Size = UDim2.new(1, 0, 0.800000012, 0)
+ScrollingFrame_2.CanvasSize = UDim2.new(0, 0, 8, 0)
+
+plrs.Name = "plrs"
+plrs.Parent = ScrollingFrame_2
+
+UIListLayout_2.Parent = plrs
+UIListLayout_2.SortOrder = Enum.SortOrder.LayoutOrder
+UIListLayout_2.Padding = UDim.new(0, 10)
+
+example.Name = "example"
+example.Parent = ScrollingFrame_2
+example.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+example.BackgroundTransparency = 1.000
+example.Size = UDim2.new(0.899999976, 0, 0, 50)
+example.Visible = false
+example.Font = Enum.Font.SourceSans
+example.TextColor3 = Color3.fromRGB(170, 170, 0)
+example.TextScaled = true
+example.TextSize = 14.000
+example.TextStrokeTransparency = 0.000
+example.TextWrapped = true
+
+UICorner_10.CornerRadius = UDim.new(5, 0)
+UICorner_10.Parent = example
+
+one.Name = "one"
+one.Parent = Pages
+one.Active = true
+one.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+one.Draggable = true
+one.Position = UDim2.new(0.177910477, -51, -0.0226446837, 81)
+one.Selectable = true
+one.Size = UDim2.new(0, 250, 0, 381)
+one.Visible = false
+
+UICorner_11.Parent = one
+
+TextLabel_3.Parent = one
+TextLabel_3.BackgroundColor3 = Color3.fromRGB(255, 0, 0)
+TextLabel_3.Size = UDim2.new(0, 198, 0, 50)
+TextLabel_3.Font = Enum.Font.SourceSans
+TextLabel_3.Text = "Leaderboard-V6"
+TextLabel_3.TextColor3 = Color3.fromRGB(0, 0, 0)
+TextLabel_3.TextScaled = true
+TextLabel_3.TextSize = 14.000
+TextLabel_3.TextStrokeTransparency = 0.000
+TextLabel_3.TextWrapped = true
+
+UICorner_12.Parent = TextLabel_3
+
+TextButton_2.Parent = one
+TextButton_2.BackgroundColor3 = Color3.fromRGB(85, 255, 0)
+TextButton_2.Position = UDim2.new(0.115999997, 0, 0.858267665, 0)
+TextButton_2.Size = UDim2.new(0, 194, 0, 45)
+TextButton_2.Font = Enum.Font.Cartoon
+TextButton_2.Text = "Search"
+TextButton_2.TextColor3 = Color3.fromRGB(0, 0, 0)
+TextButton_2.TextScaled = true
+TextButton_2.TextSize = 14.000
+TextButton_2.TextWrapped = true
+
+UICorner_13.Parent = TextButton_2
+
+TextBox.Parent = one
+TextBox.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+TextBox.Position = UDim2.new(0.100000001, 0, 0.322834641, 0)
+TextBox.Size = UDim2.new(0, 200, 0, 50)
+TextBox.ClearTextOnFocus = false
+TextBox.Font = Enum.Font.SourceSans
+TextBox.Text = "100"
+TextBox.TextColor3 = Color3.fromRGB(0, 0, 0)
+TextBox.TextScaled = true
+TextBox.TextSize = 14.000
+TextBox.TextWrapped = true
+
+UICorner_14.Parent = TextBox
+
+TextLabel_4.Parent = one
+TextLabel_4.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+TextLabel_4.BackgroundTransparency = 1.000
+TextLabel_4.Position = UDim2.new(0.100000001, 0, 0.482939631, 0)
+TextLabel_4.Size = UDim2.new(0, 200, 0, 50)
+TextLabel_4.Font = Enum.Font.SourceSans
+TextLabel_4.Text = "Donator:"
+TextLabel_4.TextColor3 = Color3.fromRGB(0, 0, 0)
+TextLabel_4.TextScaled = true
+TextLabel_4.TextSize = 14.000
+TextLabel_4.TextWrapped = true
+
+UICorner_15.Parent = TextLabel_4
+
+Result.Name = "Result"
+Result.Parent = one
+Result.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+Result.Position = UDim2.new(0.100000001, 0, 0.645669281, 0)
+Result.Size = UDim2.new(0, 200, 0, 50)
+Result.ClearTextOnFocus = false
+Result.Font = Enum.Font.SourceSans
+Result.Text = "Result"
+Result.TextColor3 = Color3.fromRGB(0, 0, 0)
+Result.TextScaled = true
+Result.TextSize = 14.000
+Result.TextWrapped = true
+
+UICorner_16.Parent = Result
+
+TextLabel_5.Parent = one
+TextLabel_5.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+TextLabel_5.BackgroundTransparency = 1.000
+TextLabel_5.Position = UDim2.new(0.0359999985, 0, 0.146981627, 0)
+TextLabel_5.Size = UDim2.new(0, 231, 0, 67)
+TextLabel_5.Font = Enum.Font.SourceSans
+TextLabel_5.Text = "IF robux donated >="
+TextLabel_5.TextColor3 = Color3.fromRGB(0, 0, 0)
+TextLabel_5.TextScaled = true
+TextLabel_5.TextSize = 14.000
+TextLabel_5.TextStrokeColor3 = Color3.fromRGB(255, 255, 255)
+TextLabel_5.TextStrokeTransparency = 0.000
+TextLabel_5.TextWrapped = true
+
+UICorner_17.Parent = TextLabel_5
+
+param.Name = "param"
+param.Parent = one
+param.BackgroundColor3 = Color3.fromRGB(109, 109, 109)
+param.Position = UDim2.new(0.823999941, 0, -0.000141747296, 0)
+param.Size = UDim2.new(0, 44, 0, 50)
+param.Image = "http://www.roblox.com/asset/?id=9688867312"
+
+UICorner_18.Parent = param
+
+UIGradient_3.Color = ColorSequence.new{ColorSequenceKeypoint.new(0.00, Color3.fromRGB(170, 0, 127)), ColorSequenceKeypoint.new(1.00, Color3.fromRGB(117, 117, 117))}
+UIGradient_3.Parent = one
+
+Notification.Name = "Notification"
+Notification.Parent = p
+Notification.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+Notification.BackgroundTransparency = 1.000
+Notification.Position = UDim2.new(0.25, 0, 0.850000024, 0)
+Notification.Size = UDim2.new(0.5, 0, 0.150000006, 0)
+Notification.Visible = false
+Notification.Font = Enum.Font.Cartoon
+Notification.TextColor3 = Color3.fromRGB(170, 170, 0)
+Notification.TextScaled = true
+Notification.TextSize = 14.000
+Notification.TextStrokeTransparency = 0.000
+Notification.TextWrapped = true
+
+-- Scripts:
+
+local function ICVEE_fake_script() -- two.LocalScript 
+	local script = Instance.new('LocalScript', two)
+
+	frame = script.Parent
+	frame.Draggable = true
+	frame.Active = true
+	frame.Selectable = true
+end
+coroutine.wrap(ICVEE_fake_script)()
+local function NKDPUU_fake_script() -- back.LocalScript 
+	local script = Instance.new('LocalScript', back)
+
+	local ui = game.Players.LocalPlayer.PlayerGui.p
+	script.Parent.MouseButton1Click:Connect(function()
+		ui.Pages.one.Visible = true
+		script.Parent.Parent.Visible = false
+	end)
+end
+coroutine.wrap(NKDPUU_fake_script)()
+local function KGARF_fake_script() -- afk.LocalScript 
+	local script = Instance.new('LocalScript', afk)
+
+	script.Parent.MouseButton1Click:Connect(function()
+		local vu = game:GetService("VirtualUser")
+		game:GetService("Players").LocalPlayer.Idled:connect(function()
+			vu:Button2Down(Vector2.new(0,0),workspace.CurrentCamera.CFrame)
+			wait(1)
+			vu:Button2Up(Vector2.new(0,0),workspace.CurrentCamera.CFrame)
+		end)
+		local notification = game.Players.LocalPlayer.PlayerGui.p.Notification
+		notification.Visible = true
+		notification.Text = "ANTI AFK ENABLED !"
+		notification.Visible = false
+	end)
+end
+coroutine.wrap(KGARF_fake_script)()
+local function EPZP_fake_script() -- Destroy.LocalScript 
+	local script = Instance.new('LocalScript', Destroy)
+
+	script.Parent.MouseButton1Click:Connect(function()
+		game.Players.LocalPlayer.PlayerGui.p:Destroy()
+	end)
+end
+coroutine.wrap(EPZP_fake_script)()
+local function IMXWPHL_fake_script() -- ScrollingFrame.LocalScript 
+	local script = Instance.new('LocalScript', ScrollingFrame)
+
+	for _, v in pairs(script.Parent.Btns:GetChildren()) do
+		if v:IsA("TextButton") then
+			local cln = script.Parent.Parent.UIGradient:Clone()
+			cln.Parent = v
+		end
+	end
+end
+coroutine.wrap(IMXWPHL_fake_script)()
+local function QQUURYY_fake_script() -- three.LocalScript 
+	local script = Instance.new('LocalScript', three)
+
+	local frame = script.Parent
+	frame.Draggable = true
+	frame.Active = true
+	frame.Selectable = true
+end
+coroutine.wrap(QQUURYY_fake_script)()
+local function OBNGXJX_fake_script() -- back_2.LocalScript 
+	local script = Instance.new('LocalScript', back_2)
+
+	local ui = game.Players.LocalPlayer.PlayerGui.p
+	script.Parent.MouseButton1Click:Connect(function()
+		ui.Pages.two.Visible = true
+		script.Parent.Parent.Visible = false
+	end)
+end
+coroutine.wrap(OBNGXJX_fake_script)()
+local function DTWEJU_fake_script() -- TextButton_2.LocalScript 
+	local script = Instance.new('LocalScript', TextButton_2)
+
+	local plrs = {}
+	valuue = false
+	local number = 1
+	local value1
+	local top = true
+	local countdown = 600
+	local ui = game.Players.LocalPlayer.PlayerGui.p
+	local notification = ui.Notification
+	local parametters = ui.Pages.two
+	local slowpc = false
+	local toggle = true
+	local history_exemple = ui.Pages.three.ScrollingFrame.example
+	local history_frame = history_exemple.Parent
+	local history_btn = parametters.ScrollingFrame.Btns.History
+	
+	local function getdata(plr1)
+		local cln = history_exemple:Clone()
+		cln.Parent = history_frame.plrs
+		cln.Text = plr1
+		cln.Visible = true
+	end
+	
+	local function cleardata()
+		for _, v in pairs(history_frame.plrs:GetChildren()) do
+			if v:IsA("TextLabel") then
+				v:Destroy()
+			end
+		end
+	end
+	
+	local function search()
+		for _, thing in pairs(game.Players.LocalPlayer.PlayerGui.MapUIContainer.MapUI.LiveDonations.Leaderboard:GetDescendants()) do
+			if thing:IsA("TextLabel") then
+				if string.match(thing.Text, ",") and top == true then
+					for k, framee in pairs(thing.Parent.Parent.Parent:GetDescendants()) do
+						if framee:IsA("Frame") and framee.AnchorPoint == Vector2.new(1, 0) then
+							for i, label in pairs(framee:GetChildren()) do
+								if label:IsA("TextLabel") then
+									if not table.find(plrs, label.Text) then
+										script.Parent.Parent.Result.Text = label.Text
+										table.insert(plrs, label.Text)
+										valuue = false
+										return nil
+									end
+								end
+							end
+						end
+					end
+				end
+				if thing.Parent.AnchorPoint == Vector2.new(1, 0) and thing:IsA("TextLabel") then
+					for k, frames in pairs(thing.Parent.Parent:GetChildren()) do
+						if frames.AnchorPoint == Vector2.new(0.5, 0) then
+							for i, fram in pairs(frames:GetChildren()) do
+								if fram:IsA("Frame") then
+									for j, label in pairs(fram:GetChildren()) do
+										if label:IsA("TextLabel") then
+											if string.match(label.Text,",") then
+												if not table.find(plrs, thing.Text) then
+													value1 = string.gsub(label.Text, ",", "")
+													table.insert(plrs, thing.Text)
+													tonumber(value1)
+													script.Parent.Parent.Result.Text = thing.Text
+													return nil
+												end
+											else
+												value1 = tonumber(label.Text)
+												local value2 = tonumber(script.Parent.Parent.TextBox.Text)
+												if value1 >= value2 then
+													if string.find(thing.Text, "@") and not table.find(plrs, thing.Text) then
+														table.insert(plrs, thing.Text)
+														script.Parent.Parent.Result.Text = thing.Text
+														valuue = false
+														script.Parent.Text = 'Found !'
+														wait(0.15)
+														script.Parent.Text = 'Search'
+														notification.Visible = true
+														notification.Text = "Found ! "..thing.Text.." Donated "..label.Text.." Robuxs !"
+														wait(1)
+														notification.Visible = false
+														local plr1 = thing.Text
+														getdata(plr1)
+														return nil
+													end
+												end
+											end
+										end
+									end
+								end
+							end
+						end
+					end
+				end
+			end
+		end
+	end
+	script.Parent.MouseButton1Click:Connect(function()
+		search()
+	end)
+	history_btn.MouseButton1Click:Connect(function()
+		ui.Pages.two.Visible = false
+		ui.Pages.three.Visible = true
+	end)
+	
+	while wait(1) do
+		if countdown == 1 then
+			countdown = 600
+			table.clear(plrs)
+			cleardata()
+		else
+			countdown = countdown - 1
+		end
+	end
+end
+coroutine.wrap(DTWEJU_fake_script)()
+local function RHFL_fake_script() -- param.LocalScript 
+	local script = Instance.new('LocalScript', param)
+
+	local ui = game.Players.LocalPlayer.PlayerGui.p
+	script.Parent.MouseButton1Click:Connect(function()
+		ui.Pages.two.Position = script.Parent.Parent.Position
+		ui.Pages.two.Visible = true
+		script.Parent.Parent.Visible = false
+	end)
+end
+coroutine.wrap(RHFL_fake_script)()
+local function JSSERGF_fake_script() -- one.LocalScript 
+	local script = Instance.new('LocalScript', one)
+
+	frame = script.Parent
+	frame.Draggable = true
+	frame.Active = true
+	frame.Selectable = true
+	
+	print('██████╗███╗░░██╗██╗██████╗░███████╗██████╗░██╗░░░██╗')
+	print('██╔════╝████╗░██║██║██╔══██╗██╔════╝██╔══██╗██║░░░██ █████╗')
+	print('╚█████╗░██╔██╗██║██║██████╔╝█████╗░░██████╔╝╚██╗░██╔╝██╔════╝')
+	print('░╚═══██╗██║╚████║██║██╔═══╝░██╔══╝░░██╔══██╗░╚████╔╝░██████╗░')
+	print('░╚═══██╗██║╚████║██║██╔═══╝░██╔══╝░░██╔══██╗░╚████╔╝╚════██╗')
+	print('██████╔╝██║░╚███║██║██║░░░░░███████╗██║░░██║░░╚██╔╝░██████╔╝')
+	print('╚═════╝░╚═╝░░╚══╝╚═╝╚═╝░░░░░╚══════╝╚═╝░░╚═╝░░░╚═╝░░╚═════╝░')
+	
+	print("░░░░░░░░░░░░░░░░██████░░░░░░░░░░░░░░░░░░")
+	print("░░░░░░░░░░░░░░░██░░░░░█░░░░░░░░░░░░░░░░░")
+	print("░░░░░░░░░░░░░░██░░░░░░██░░░░░░░░░░░░░░░░")
+	print("░░░░░░░░░░░░░██░░░░░░░░█░░░░░░░░░░░░░░░░")
+	print("░░░░░░░░░░░░░█░░░░░░░░░█░░░░░░░░░░░░░░░░")
+	print("░░░░░░░░░░░░██░░░░░░░░░█░░░░░░░░░░░░░░░░")
+	print("░░░░░░░░░░░██░░░░░░░░░██░░░░░░░░░░░░░░░░")
+	print("░░░░░░░░░░░█░░░░░░░░░░█░░░░░░░░░░░░░░░░░")
+	print("░░░░░░░░░░░█░░░░░░░░░░█░░░░█████░░░░░░░░")
+	print("░░░░░░░░░░░█░░░░░░░░░░██████░░░███░░░░░░")
+	print("░░░░███░████░░░░░░░░░███░░█░░░░░░██░░░░░")
+	print("░░███░███░░██░░░░░░░░██░░░█░░░░░░░██░░░░")
+	print("░░█░░░░██░░██░░░░░░░░░░░░░░░░░░░░░███░░░")
+	print("░░█░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░██░░░░░")
+	print("░░█████░░░░░░░░░░░░░░░░░░░░░░░░░██░░░░░░")
+	print("░░░░░░█████░░░░░░░░░░░░░░░░░░░░██░░░░░░░")
+	print("░░░░░░░░░██░░░░░░░░░░░░░░░░░░░░█░░░░░░░░")
+	print("░░░░░░░░░░░██████░░░░░░░░░░░░░██░░░░░░░░")
+	print("░░░░░░░░░░░░░░░░░███████░░░████░░░░░░░░░")
+	print("░░░░░░░░░░░░░░░░░░░░░░░░███░░░░░░░░░░░░░")
+	
+	local stroke = Instance.new("UIStroke")
+	stroke.Parent = script.Parent
+	stroke.Thickness = 4
+	stroke:Clone().Parent = script.Parent.Parent.two
+end
+coroutine.wrap(JSSERGF_fake_script)()
