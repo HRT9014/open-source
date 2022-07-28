@@ -73,6 +73,7 @@ two.Draggable = true
 two.Position = UDim2.new(0.181003273, 0, 0.0376292914, 0)
 two.Selectable = true
 two.Size = UDim2.new(0, 250, 0, 381)
+two.Visible = false
 
 UICorner.Parent = two
 
@@ -293,7 +294,6 @@ one.Draggable = true
 one.Position = UDim2.new(0.177910477, -51, -0.0226446837, 81)
 one.Selectable = true
 one.Size = UDim2.new(0, 250, 0, 381)
-one.Visible = false
 
 UICorner_11.Parent = one
 
@@ -301,7 +301,7 @@ TextLabel_3.Parent = one
 TextLabel_3.BackgroundColor3 = Color3.fromRGB(255, 0, 0)
 TextLabel_3.Size = UDim2.new(0, 198, 0, 50)
 TextLabel_3.Font = Enum.Font.SourceSans
-TextLabel_3.Text = "Leaderboard-V6"
+TextLabel_3.Text = "Leaderboard-V6 Made by Golden Fire#9014"
 TextLabel_3.TextColor3 = Color3.fromRGB(0, 0, 0)
 TextLabel_3.TextScaled = true
 TextLabel_3.TextSize = 14.000
@@ -410,7 +410,7 @@ Notification.TextWrapped = true
 
 -- Scripts:
 
-local function ICVEE_fake_script() -- two.LocalScript 
+local function CYKT_fake_script() -- two.LocalScript 
 	local script = Instance.new('LocalScript', two)
 
 	frame = script.Parent
@@ -418,8 +418,8 @@ local function ICVEE_fake_script() -- two.LocalScript
 	frame.Active = true
 	frame.Selectable = true
 end
-coroutine.wrap(ICVEE_fake_script)()
-local function NKDPUU_fake_script() -- back.LocalScript 
+coroutine.wrap(CYKT_fake_script)()
+local function JAMOEL_fake_script() -- back.LocalScript 
 	local script = Instance.new('LocalScript', back)
 
 	local ui = game.Players.LocalPlayer.PlayerGui.p
@@ -428,8 +428,8 @@ local function NKDPUU_fake_script() -- back.LocalScript
 		script.Parent.Parent.Visible = false
 	end)
 end
-coroutine.wrap(NKDPUU_fake_script)()
-local function KGARF_fake_script() -- afk.LocalScript 
+coroutine.wrap(JAMOEL_fake_script)()
+local function UNDBRTM_fake_script() -- afk.LocalScript 
 	local script = Instance.new('LocalScript', afk)
 
 	script.Parent.MouseButton1Click:Connect(function()
@@ -445,16 +445,16 @@ local function KGARF_fake_script() -- afk.LocalScript
 		notification.Visible = false
 	end)
 end
-coroutine.wrap(KGARF_fake_script)()
-local function EPZP_fake_script() -- Destroy.LocalScript 
+coroutine.wrap(UNDBRTM_fake_script)()
+local function IVPPXKV_fake_script() -- Destroy.LocalScript 
 	local script = Instance.new('LocalScript', Destroy)
 
 	script.Parent.MouseButton1Click:Connect(function()
 		game.Players.LocalPlayer.PlayerGui.p:Destroy()
 	end)
 end
-coroutine.wrap(EPZP_fake_script)()
-local function IMXWPHL_fake_script() -- ScrollingFrame.LocalScript 
+coroutine.wrap(IVPPXKV_fake_script)()
+local function ALYNFW_fake_script() -- ScrollingFrame.LocalScript 
 	local script = Instance.new('LocalScript', ScrollingFrame)
 
 	for _, v in pairs(script.Parent.Btns:GetChildren()) do
@@ -464,8 +464,8 @@ local function IMXWPHL_fake_script() -- ScrollingFrame.LocalScript
 		end
 	end
 end
-coroutine.wrap(IMXWPHL_fake_script)()
-local function QQUURYY_fake_script() -- three.LocalScript 
+coroutine.wrap(ALYNFW_fake_script)()
+local function QGGX_fake_script() -- three.LocalScript 
 	local script = Instance.new('LocalScript', three)
 
 	local frame = script.Parent
@@ -473,8 +473,8 @@ local function QQUURYY_fake_script() -- three.LocalScript
 	frame.Active = true
 	frame.Selectable = true
 end
-coroutine.wrap(QQUURYY_fake_script)()
-local function OBNGXJX_fake_script() -- back_2.LocalScript 
+coroutine.wrap(QGGX_fake_script)()
+local function VKDKHDS_fake_script() -- back_2.LocalScript 
 	local script = Instance.new('LocalScript', back_2)
 
 	local ui = game.Players.LocalPlayer.PlayerGui.p
@@ -483,8 +483,8 @@ local function OBNGXJX_fake_script() -- back_2.LocalScript
 		script.Parent.Parent.Visible = false
 	end)
 end
-coroutine.wrap(OBNGXJX_fake_script)()
-local function DTWEJU_fake_script() -- TextButton_2.LocalScript 
+coroutine.wrap(VKDKHDS_fake_script)()
+local function HVZZM_fake_script() -- TextButton_2.LocalScript 
 	local script = Instance.new('LocalScript', TextButton_2)
 
 	local plrs = {}
@@ -600,8 +600,8 @@ local function DTWEJU_fake_script() -- TextButton_2.LocalScript
 		end
 	end
 end
-coroutine.wrap(DTWEJU_fake_script)()
-local function RHFL_fake_script() -- param.LocalScript 
+coroutine.wrap(HVZZM_fake_script)()
+local function MTTIUNR_fake_script() -- param.LocalScript 
 	local script = Instance.new('LocalScript', param)
 
 	local ui = game.Players.LocalPlayer.PlayerGui.p
@@ -611,8 +611,8 @@ local function RHFL_fake_script() -- param.LocalScript
 		script.Parent.Parent.Visible = false
 	end)
 end
-coroutine.wrap(RHFL_fake_script)()
-local function JSSERGF_fake_script() -- one.LocalScript 
+coroutine.wrap(MTTIUNR_fake_script)()
+local function EXHPY_fake_script() -- one.LocalScript 
 	local script = Instance.new('LocalScript', one)
 
 	frame = script.Parent
@@ -654,4 +654,4 @@ local function JSSERGF_fake_script() -- one.LocalScript
 	stroke.Thickness = 4
 	stroke:Clone().Parent = script.Parent.Parent.two
 end
-coroutine.wrap(JSSERGF_fake_script)()
+coroutine.wrap(EXHPY_fake_script)()
