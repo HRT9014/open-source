@@ -130,10 +130,6 @@ function _G.Main:new(label_text)
 	end
 	return _G.Frame
 end
-
-local Frame1 = _G.Main:new("Cool name")
-
-Frame1:normal_button("Hello1", function()
 	
 end)
 
