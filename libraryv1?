@@ -1,0 +1,140 @@
+_G.main = {}
+
+
+function _G.Main:new(label_text)
+	local BtxUi = Instance.new("ScreenGui")
+	local Frame = Instance.new("Frame")
+	local UICorner = Instance.new("UICorner")
+	local Frames = Instance.new("Folder")
+	local SideBar = Instance.new("Frame")
+	local UICorner_2 = Instance.new("UICorner")
+	local UIListLayout = Instance.new("UIListLayout")
+	local TextButton = Instance.new("TextButton")
+	local UICorner_3 = Instance.new("UICorner")
+	local ScrollingFrame = Instance.new("ScrollingFrame")
+	local UICorner_4 = Instance.new("UICorner")
+	local UIGridLayout = Instance.new("UIGridLayout")
+	local UICorner_5 = Instance.new("UICorner")
+	local title = Instance.new("Folder")
+	local TextLabel = Instance.new("TextLabel")
+	local UICorner_6 = Instance.new("UICorner")
+
+	--Properties:
+
+	BtxUi.Name = "BtxUi"
+	BtxUi.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
+	BtxUi.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+
+	Frame.Parent = BtxUi
+	Frame.BackgroundColor3 = Color3.fromRGB(58, 58, 58)
+	Frame.Position = UDim2.new(0.234009326, 0, 0.207770273, 0)
+	Frame.Size = UDim2.new(0.421752602, 0, 0.573648632, 0)
+
+	UICorner.Parent = Frame
+
+	Frames.Name = "Frames"
+	Frames.Parent = Frame
+
+	SideBar.Name = "SideBar"
+	SideBar.Parent = Frames
+	SideBar.BackgroundColor3 = Color3.fromRGB(58, 58, 58)
+	SideBar.Position = UDim2.new(0, 0, 0.100000001, 0)
+	SideBar.Size = UDim2.new(0.189999998, 0, 0.899999976, 0)
+
+	UICorner_2.Parent = SideBar
+
+	UIListLayout.Parent = SideBar
+	UIListLayout.SortOrder = Enum.SortOrder.LayoutOrder
+
+	TextButton.Parent = SideBar
+	TextButton.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+	TextButton.Size = UDim2.new(1, 0, 0.333000004, 0)
+	TextButton.Font = Enum.Font.Cartoon
+	TextButton.Text = "AutoFarm"
+	TextButton.TextColor3 = Color3.fromRGB(255, 255, 255)
+	TextButton.TextScaled = true
+	TextButton.TextSize = 14.000
+	TextButton.TextWrapped = true
+
+	UICorner_3.Parent = TextButton
+
+	ScrollingFrame.Parent = Frames
+	ScrollingFrame.Active = true
+	ScrollingFrame.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+	ScrollingFrame.BackgroundTransparency = 1.000
+	ScrollingFrame.Position = UDim2.new(0.189403057, 0, 0.12000002, 0)
+	ScrollingFrame.Size = UDim2.new(0.800000072, 0, 0.880000055, 0)
+
+	UICorner_4.Parent = ScrollingFrame
+
+	UIGridLayout.Parent = ScrollingFrame
+	UIGridLayout.SortOrder = Enum.SortOrder.LayoutOrder
+	UIGridLayout.CellPadding = UDim2.new(0, 5, 0, 10)
+	UIGridLayout.CellSize = UDim2.new(0.49000001, 0, 0.0799999982, 0)
+
+	title.Name = "title"
+	title.Parent = Frame
+
+	TextLabel.Parent = title
+	TextLabel.BackgroundColor3 = Color3.fromRGB(170, 0, 0)
+	TextLabel.Size = UDim2.new(1, 0, 0.119999997, 0)
+	TextLabel.Font = Enum.Font.SourceSans
+	TextLabel.Text = label_text.." - game name"
+	TextLabel.TextColor3 = Color3.fromRGB(0, 0, 0)
+	TextLabel.TextScaled = true
+	TextLabel.TextSize = 14.000
+	TextLabel.TextStrokeTransparency = 0.000
+	TextLabel.TextWrapped = true
+
+	UICorner_6.Parent = TextLabel
+
+	-- Scripts:
+
+	local function VJVZN_fake_script() -- TextLabel.LocalScript 
+		local script = Instance.new('LocalScript', TextLabel)
+
+		script.Parent.Text = "Beautiful X - "..game.Name
+	end
+	coroutine.wrap(VJVZN_fake_script)()
+	local function LGNSHF_fake_script() -- Frame.LocalScript 
+		local script = Instance.new('LocalScript', Frame)
+
+		script.Parent.Active = true
+		script.Parent.Draggable = true
+	end
+	coroutine.wrap(LGNSHF_fake_script)()
+	
+	
+	_G.Frame = {}
+	
+	function _G.Frame:normal_button(Name, Call)
+		local TextButton_2 = Instance.new("TextButton")
+		TextButton_2.Parent = ScrollingFrame
+		TextButton_2.BackgroundColor3 = Color3.fromRGB(40, 40, 40)
+		TextButton_2.Size = UDim2.new(0, 200, 0, 50)
+		TextButton_2.Font = Enum.Font.Cartoon
+		TextButton_2.TextColor3 = Color3.fromRGB(0, 0, 0)
+		TextButton_2.Text = Name
+		TextButton_2.TextScaled = true
+		TextButton_2.TextSize = 14.000
+		TextButton_2.TextWrapped = true
+		
+		TextButton_2.MouseButton1Click:Connect(function()
+			pcall(Call)
+		end)
+		UICorner_5.Parent = TextButton_2
+	end
+	
+	function _G.Frame:side_button(Name, Call)
+		
+	end
+	return _G.Frame
+end
+
+local Frame1 = _G.Main:new("Cool name")
+
+Frame1:normal_button("Hello1", function()
+	
+end)
+
+return _G.Main
