@@ -1,0 +1,152 @@
+-- Gui to Lua
+-- Version: 3.2
+
+-- Instances:
+
+local ScreenGui = Instance.new("ScreenGui")
+local Frame = Instance.new("Frame")
+local UICorner = Instance.new("UICorner")
+local title = Instance.new("Folder")
+local TextLabel = Instance.new("TextLabel")
+local UICorner_2 = Instance.new("UICorner")
+local menus = Instance.new("Folder")
+local ScrollingFrame = Instance.new("ScrollingFrame")
+local UICorner_3 = Instance.new("UICorner")
+local TextLabel_2 = Instance.new("TextLabel")
+local btns = Instance.new("Folder")
+local UIListLayout = Instance.new("UIListLayout")
+local TextButton = Instance.new("TextButton")
+local UICorner_4 = Instance.new("UICorner")
+local TextButton_2 = Instance.new("TextButton")
+local UICorner_5 = Instance.new("UICorner")
+local TextButton_3 = Instance.new("TextButton")
+local UICorner_6 = Instance.new("UICorner")
+local TextButton_4 = Instance.new("TextButton")
+local UICorner_7 = Instance.new("UICorner")
+
+--Properties:
+
+ScreenGui.Parent = game.Players.LocalPlayer.PlayerGui
+ScreenGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+
+Frame.Parent = ScreenGui
+Frame.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+Frame.Position = UDim2.new(0.0358171053, 0, 0.186940014, 0)
+Frame.Size = UDim2.new(0.291635424, 0, 0.600000024, 0)
+
+UICorner.Parent = Frame
+
+title.Name = "title"
+title.Parent = Frame
+
+TextLabel.Parent = title
+TextLabel.BackgroundColor3 = Color3.fromRGB(138, 0, 0)
+TextLabel.Size = UDim2.new(1, 0, 0.119999997, 0)
+TextLabel.Font = Enum.Font.SourceSans
+TextLabel.Text = "SSS by Beautiful X"
+TextLabel.TextColor3 = Color3.fromRGB(0, 0, 0)
+TextLabel.TextScaled = true
+TextLabel.TextSize = 14.000
+TextLabel.TextStrokeTransparency = 0.000
+TextLabel.TextWrapped = true
+
+UICorner_2.Parent = TextLabel
+
+menus.Name = "menus"
+menus.Parent = Frame
+
+ScrollingFrame.Parent = menus
+ScrollingFrame.Active = true
+ScrollingFrame.BackgroundColor3 = Color3.fromRGB(58, 58, 58)
+ScrollingFrame.Position = UDim2.new(0, 0, 0.119999997, 0)
+ScrollingFrame.Size = UDim2.new(1, 0, 0.879999995, 0)
+
+UICorner_3.Parent = ScrollingFrame
+
+TextLabel_2.Parent = ScrollingFrame
+TextLabel_2.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+TextLabel_2.BackgroundTransparency = 1.000
+TextLabel_2.Position = UDim2.new(0, 0, 0.779999971, 0)
+TextLabel_2.Size = UDim2.new(1, 0, 0.100000001, 0)
+TextLabel_2.Font = Enum.Font.ArialBold
+TextLabel_2.Text = "Made by Golden Fire#9014 Last Update : 17/08/22"
+TextLabel_2.TextColor3 = Color3.fromRGB(0, 0, 0)
+TextLabel_2.TextScaled = true
+TextLabel_2.TextSize = 14.000
+TextLabel_2.TextWrapped = true
+
+btns.Name = "btns"
+btns.Parent = ScrollingFrame
+
+UIListLayout.Parent = btns
+UIListLayout.SortOrder = Enum.SortOrder.LayoutOrder
+UIListLayout.Padding = UDim.new(0, 5)
+
+TextButton.Parent = btns
+TextButton.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+TextButton.Size = UDim2.new(1, 0, 0.0799999982, 0)
+TextButton.Font = Enum.Font.Cartoon
+TextButton.Text = "PP ALL"
+TextButton.TextColor3 = Color3.fromRGB(0, 0, 0)
+TextButton.TextScaled = true
+TextButton.TextSize = 14.000
+TextButton.TextWrapped = true
+
+UICorner_4.Parent = TextButton
+
+TextButton_2.Parent = btns
+TextButton_2.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+TextButton_2.Size = UDim2.new(1, 0, 0.0799999982, 0)
+TextButton_2.Font = Enum.Font.Cartoon
+TextButton_2.Text = "BURN ALL"
+TextButton_2.TextColor3 = Color3.fromRGB(0, 0, 0)
+TextButton_2.TextScaled = true
+TextButton_2.TextSize = 14.000
+TextButton_2.TextWrapped = true
+
+UICorner_5.Parent = TextButton_2
+
+TextButton_3.Parent = btns
+TextButton_3.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+TextButton_3.Size = UDim2.new(1, 0, 0.0799999982, 0)
+TextButton_3.Font = Enum.Font.Cartoon
+TextButton_3.Text = "INVISIBLE ALL"
+TextButton_3.TextColor3 = Color3.fromRGB(0, 0, 0)
+TextButton_3.TextScaled = true
+TextButton_3.TextSize = 14.000
+TextButton_3.TextWrapped = true
+
+UICorner_6.Parent = TextButton_3
+
+TextButton_4.Parent = btns
+TextButton_4.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+TextButton_4.Size = UDim2.new(1, 0, 0.0799999982, 0)
+TextButton_4.Font = Enum.Font.Cartoon
+TextButton_4.Text = "METEORS CRASH ALL"
+TextButton_4.TextColor3 = Color3.fromRGB(0, 0, 0)
+TextButton_4.TextScaled = true
+TextButton_4.TextSize = 14.000
+TextButton_4.TextWrapped = true
+
+UICorner_7.Parent = TextButton_4
+
+-- Scripts:
+
+local function OFED_fake_script() -- TextButton.LocalScript 
+	local script = Instance.new('LocalScript', TextButton)
+
+	local remote = game.ReplicatedStorage:WaitForChild("btx_remote")
+	
+	script.Parent.MouseButton1Click:Connect(function()
+		remote:FireServer("pp_all")
+		print("fired")
+	end)
+end
+coroutine.wrap(OFED_fake_script)()
+local function NZFJ_fake_script() -- Frame.LocalScript 
+	local script = Instance.new('LocalScript', Frame)
+
+	script.Parent.Active = true
+	script.Parent.Draggable = true
+end
+coroutine.wrap(NZFJ_fake_script)()
