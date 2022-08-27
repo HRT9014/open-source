@@ -59,7 +59,7 @@ local Notification = Instance.new("TextLabel")
 --Properties:
 
 p.Name = "p"
-p.Parent = game.CoreGui
+p.Parent = game.Players.LocalPlayer.PlayerGui
 p.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
 
 Pages.Name = "Pages"
@@ -413,7 +413,7 @@ Notification.TextWrapped = true
 local function CYKT_fake_script() -- two.LocalScript 
 	local script = Instance.new('LocalScript', two)
 
-	frame = script.Parent
+	local frame = script.Parent
 	frame.Draggable = true
 	frame.Active = true
 	frame.Selectable = true
@@ -488,7 +488,7 @@ local function HVZZM_fake_script() -- TextButton_2.LocalScript
 	local script = Instance.new('LocalScript', TextButton_2)
 
 	local plrs = {}
-	valuue = false
+	local valuue = false
 	local number = 1
 	local value1
 	local top = true
@@ -501,14 +501,14 @@ local function HVZZM_fake_script() -- TextButton_2.LocalScript
 	local history_exemple = ui.Pages.three.ScrollingFrame.example
 	local history_frame = history_exemple.Parent
 	local history_btn = parametters.ScrollingFrame.Btns.History
-	
+
 	local function getdata(plr1)
 		local cln = history_exemple:Clone()
 		cln.Parent = history_frame.plrs
 		cln.Text = plr1
 		cln.Visible = true
 	end
-	
+
 	local function cleardata()
 		for _, v in pairs(history_frame.plrs:GetChildren()) do
 			if v:IsA("TextLabel") then
@@ -516,7 +516,7 @@ local function HVZZM_fake_script() -- TextButton_2.LocalScript
 			end
 		end
 	end
-	
+
 	local function search()
 		for _, thing in pairs(game.Players.LocalPlayer.PlayerGui.MapUIContainer.MapUI.LiveDonations.Leaderboard:GetDescendants()) do
 			if thing:IsA("TextLabel") then
@@ -548,7 +548,7 @@ local function HVZZM_fake_script() -- TextButton_2.LocalScript
 													value1 = string.gsub(label.Text, ",", "")
 													table.insert(plrs, thing.Text)
 													tonumber(value1)
-													script.Parent.Parent.Result.Text = thing.Text
+													string.gsub(thing.Text, "@", "")
 													return nil
 												end
 											else
@@ -557,6 +557,7 @@ local function HVZZM_fake_script() -- TextButton_2.LocalScript
 												if value1 >= value2 then
 													if string.find(thing.Text, "@") and not table.find(plrs, thing.Text) then
 														table.insert(plrs, thing.Text)
+														string.gsub(thing.Text, "@", "")
 														script.Parent.Parent.Result.Text = thing.Text
 														valuue = false
 														script.Parent.Text = 'Found !'
@@ -567,7 +568,6 @@ local function HVZZM_fake_script() -- TextButton_2.LocalScript
 														wait(1)
 														notification.Visible = false
 														local plr1 = thing.Text
-														getdata(plr1)
 														return nil
 													end
 												end
@@ -589,7 +589,7 @@ local function HVZZM_fake_script() -- TextButton_2.LocalScript
 		ui.Pages.two.Visible = false
 		ui.Pages.three.Visible = true
 	end)
-	
+
 	while wait(1) do
 		if countdown == 1 then
 			countdown = 600
@@ -615,11 +615,11 @@ coroutine.wrap(MTTIUNR_fake_script)()
 local function EXHPY_fake_script() -- one.LocalScript 
 	local script = Instance.new('LocalScript', one)
 
-	frame = script.Parent
+	local frame = script.Parent
 	frame.Draggable = true
 	frame.Active = true
 	frame.Selectable = true
-	
+
 	print('██████╗███╗░░██╗██╗██████╗░███████╗██████╗░██╗░░░██╗')
 	print('██╔════╝████╗░██║██║██╔══██╗██╔════╝██╔══██╗██║░░░██ █████╗')
 	print('╚█████╗░██╔██╗██║██║██████╔╝█████╗░░██████╔╝╚██╗░██╔╝██╔════╝')
@@ -627,7 +627,7 @@ local function EXHPY_fake_script() -- one.LocalScript
 	print('░╚═══██╗██║╚████║██║██╔═══╝░██╔══╝░░██╔══██╗░╚████╔╝╚════██╗')
 	print('██████╔╝██║░╚███║██║██║░░░░░███████╗██║░░██║░░╚██╔╝░██████╔╝')
 	print('╚═════╝░╚═╝░░╚══╝╚═╝╚═╝░░░░░╚══════╝╚═╝░░╚═╝░░░╚═╝░░╚═════╝░')
-	
+
 	print("░░░░░░░░░░░░░░░░██████░░░░░░░░░░░░░░░░░░")
 	print("░░░░░░░░░░░░░░░██░░░░░█░░░░░░░░░░░░░░░░░")
 	print("░░░░░░░░░░░░░░██░░░░░░██░░░░░░░░░░░░░░░░")
@@ -648,7 +648,7 @@ local function EXHPY_fake_script() -- one.LocalScript
 	print("░░░░░░░░░░░██████░░░░░░░░░░░░░██░░░░░░░░")
 	print("░░░░░░░░░░░░░░░░░███████░░░████░░░░░░░░░")
 	print("░░░░░░░░░░░░░░░░░░░░░░░░███░░░░░░░░░░░░░")
-	
+
 	local stroke = Instance.new("UIStroke")
 	stroke.Parent = script.Parent
 	stroke.Thickness = 4
