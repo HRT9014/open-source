@@ -1,0 +1,1175 @@
+-- Decompiled with the Synapse X Luau decompiler.
+
+local v1 = require(game.ReplicatedStorage:WaitForChild("Framework"):WaitForChild("Library"));
+while not v1.Loaded do
+	game:GetService("RunService").Heartbeat:Wait();
+end;
+local u1 = Random.new();
+local u2 = {};
+local u3 = 0;
+local u4 = false;
+local function u5(p1)
+	local v2 = u2[p1];
+	if not v2 then
+		return;
+	end;
+	local l__physical__3 = v2.physical;
+	if l__physical__3 then
+		l__physical__3:Destroy();
+	end;
+	if u3 > 0 and not u4 then
+		u4 = true;
+		warn(string.format("PetWhileIterating: %s", debug.traceback()));
+	end;
+	u2[p1] = nil;
+	if v2.owner == v1.LocalPlayer then
+		v1.Signal.Fire("Removed Client Pet", p1);
+	end;
+end;
+local u6 = 0;
+local u7 = nil;
+local u8 = { "rbxassetid://6840608566", "rbxassetid://6840608533", "rbxassetid://6840608598", "rbxassetid://6840608504" };
+local u9 = true;
+local u10 = nil;
+local function u11(p2)
+	local v4, v5 = v1.PetCmds.Get(p2);
+	if not v4 then
+		v1.Print("Failed to get pet data for petId [bold]" .. p2 .. "[/bold]", true);
+		return;
+	end;
+	local v6 = v1.Player.Get("Character", v5);
+	local v7 = v1.Player.Get("Humanoid", v5);
+	if not v6 or not v7 or not v6.PrimaryPart then
+		return;
+	end;
+	if not v1.Save.Get(v5, true) or v1.WorldCmds.Get() ~= v1.WorldCmds.Get() then
+		return;
+	end;
+	local l__id__8 = v4.id;
+	local l__g__9 = v4.g;
+	local l__r__10 = v4.r;
+	local l__dm__11 = v4.dm;
+	local l__hc__12 = v4.hc;
+	local l__nk__13 = v4.nk;
+	local v14 = v4.s and 0;
+	if l__hc__12 and v1.Shared.IsHardcore then
+		v14 = v14 * v1.Shared.HardcorePetMult;
+	end;
+	local v15 = v1.Directory.Pets[l__id__8];
+	local l__rarity__16 = v15.rarity;
+	local v17 = l__g__9 and v15.modelGold or v15.model;
+	if not v17 then
+		if l__g__9 then
+			local v18 = " (gold)";
+		else
+			v18 = "";
+		end;
+		v1.Print("Pet doesn't exist - " .. l__id__8 .. v18, true);
+		return;
+	end;
+	local v19 = v17:Clone();
+	local v20 = v19:FindFirstChildOfClass("SpecialMesh");
+	local l__center__21 = v19:FindFirstChild("center");
+	local l__bottom__22 = v19:FindFirstChild("bottom");
+	if l__id__8 == "294" then
+		v1.Functions.ScaleModel(v19, u1:NextNumber(0.2, 1.5));
+	end;
+	v19.Name = p2;
+	v19.CFrame = v6:GetPrimaryPartCFrame() * CFrame.new(0, 0, -5) - Vector3.new(0, v7.HipHeight / 2, 0);
+	if v20.VertexColor == Vector3.new(1, 1, 1) then
+		v20.VertexColor = Vector3.new(1.125, 1.125, 1.125);
+	end;
+	v19.Parent = v1.Things.Pets;
+	local v23 = nil;
+	if v1.Variables.Desktop then
+		v23 = Instance.new("Highlight");
+		v23.Name = "_HIGHLIGHT";
+		v23.FillTransparency = 1;
+		v23.OutlineColor = Color3.new(0, 0, 0);
+		v23.FillColor = Color3.new(0, 0, 0);
+		v23.DepthMode = Enum.HighlightDepthMode.Occluded;
+		v23.OutlineTransparency = 0.6;
+		v23.Parent = v19;
+	end;
+	if l__g__9 then
+		v20.VertexColor = Vector3.new(1.45, 1.45, 1.45);
+		local v24, v25, v26 = ipairs(v1.Assets.Particles:FindFirstChild("Golden Pet"):GetChildren());
+		while true do
+			v24(v25, v26);
+			if not v24 then
+				break;
+			end;
+			v26 = v24;
+			v25:Clone().Parent = v19;		
+		end;
+	end;
+	local v27 = nil;
+	local v28 = nil;
+	if l__r__10 then
+		v28 = v1.Assets.Particles:FindFirstChild("Rainbow Pet"):GetChildren()[1]:Clone();
+		v28.Name = "__RAINBOWPARTICLES";
+		v28.Parent = v19;
+		v20.VertexColor = Vector3.new(2, 2, 2);
+		v27 = v1.Assets.Other:FindFirstChild("Rainbow Pet"):GetChildren()[1]:Clone();
+		v27.Name = "__RAINBOWFX";
+		v27.Parent = v19;
+	end;
+	if l__dm__11 then
+		if l__hc__12 then
+			v20.VertexColor = Vector3.new(0.8, 20, 20);
+		else
+			v20.VertexColor = Vector3.new(20, 0.6, 20);
+		end;
+	end;
+	local v29 = nil;
+	if l__hc__12 then
+		local v30, v31, v32 = ipairs((v1.Assets.Particles["Hardcore Pets"]:GetChildren()));
+		while true do
+			v30(v31, v32);
+			if not v30 then
+				break;
+			end;
+			v32 = v30;
+			v31:Clone().Parent = l__center__21;		
+		end;
+		if not l__r__10 and not l__dm__11 then
+			v29 = v1.Assets.Other:FindFirstChild("Hardcore Pet"):GetChildren()[1]:Clone();
+			v29.Name = "__HARDCOREFX";
+			v29.Parent = v19;
+		end;
+		v1.Functions.ScaleModel(v19, 1.25);
+	end;
+	local v33 = nil;
+	if string.find(v15.name, "Pixel") ~= nil then
+		v33 = "Pixel";
+	end;
+	local v34 = v1.Assets.Billboards.Pet:Clone();
+	v34.Nickname.Text = l__nk__13;
+	v34.StudsOffset = Vector3.new(0, (l__center__21.Position - l__bottom__22.Position).Y * 2, 0);
+	v34.Name = "__BILLBOARD";
+	if v1.Shared.PetRarityNumbers[l__rarity__16] >= 2 then
+		local l__Rarity__35 = v34.Rarity;
+		l__Rarity__35.Text = l__rarity__16;
+		v1.Shared.ApplyRarityColor(l__Rarity__35, l__rarity__16);
+		l__Rarity__35.Visible = true;
+		v34.StudsOffset = v34.StudsOffset + Vector3.new(0, 1, 0);
+	end;
+	v34.Parent = v19;
+	coroutine.wrap(function()
+		v1.RenderStepped();
+		local v36 = v1.Assets.Particles:FindFirstChild("Pet Spawn"):Clone();
+		v36.Parent = v19;
+		v36:Emit(8);
+		v1.Audio.Play("rbxassetid://7000720081", v19, u1:NextNumber(0.95, 1.05), 0.125, 125);
+		v1.Functions.AddDebris(v36, 4);
+	end)();
+	v19:SetAttribute("Owner", v5.Name);
+	v19:SetAttribute("Dir", l__id__8);
+	v19:SetAttribute("ID", p2);
+	u2[p2] = {
+		physical = v19, 
+		uid = p2, 
+		id = l__id__8, 
+		owner = v5, 
+		target = nil, 
+		networkTarget = nil, 
+		row = 0, 
+		rowPlace = 0, 
+		rowTotal = 0, 
+		moving = false, 
+		distance = nil, 
+		raycast = nil, 
+		farming = false, 
+		arrived = false, 
+		selectionFunc = nil, 
+		walkSoundTick = nil, 
+		playerDistCheckTick = 0, 
+		targetuid = 0, 
+		nickname = l__nk__13, 
+		spawnTick = os.clock(), 
+		speed = math.clamp(1 + (v14 / 100) ^ 0.4, 1, 7) * 0.25, 
+		centerAttachment = l__center__21, 
+		bottomAttachment = l__bottom__22, 
+		huge = v15.huge ~= nil and v15.huge or false, 
+		special = v33, 
+		highlight = v23, 
+		rainbowParticles = v28, 
+		rainbowDecal = v27, 
+		mesh = v20, 
+		hardcoreDecal = v29, 
+		nicknameBillboard = v34
+	};
+	if v5 == v1.LocalPlayer then
+		v1.Signal.Fire("Added Client Pet", p2);
+	end;
+end;
+local u12 = nil;
+local l__IsHardcore__13 = v1.Shared.IsHardcore;
+function ChangePetTargetPlayer(p3)
+	if not p3 then
+		return;
+	end;
+	local v37, v38 = v1.PetCmds.Get(p3);
+	if v37 then
+		if v38 then
+			if v38 ~= v1.LocalPlayer then
+				local v39 = u2[p3];
+				if v39 then
+					v39.target = v39.owner;
+					v39.farming = false;
+				end;
+			end;
+		end;
+	end;
+end;
+function ChangePetTargetCoin(p4, p5)
+	if p4 then
+		if not p5 then
+			return;
+		end;
+	else
+		return;
+	end;
+	local v40, v41 = v1.PetCmds.Get(p4);
+	if v40 then
+		if v41 then
+			if v41 ~= v1.LocalPlayer then
+				local v42 = u2[p4];
+				local v43 = v1.Things.Coins:FindFirstChild(p5);
+				if v42 then
+					if v43 then
+						v42.target = v43:FindFirstChild("POS");
+						v42.farming = true;
+					end;
+				end;
+			end;
+		end;
+	end;
+end;
+local u14 = nil;
+function NetworkUpdate()
+	local v44, v45, v46 = pairs(u2);
+	while true do
+		local v47, v48 = v44(v45, v46);
+		if v47 then
+
+		else
+			break;
+		end;
+		v46 = v47;
+		local l__uid__49 = v48.uid;
+		local l__owner__50 = v48.owner;
+		local l__target__51 = v48.target;
+		if l__owner__50 == v1.LocalPlayer then
+			if l__target__51 ~= v48.networkTarget then
+				v48.networkTarget = l__target__51;
+				if v48.farming then
+					v1.Network.Fire("k", l__uid__49, "Coin", (l__target__51.Parent:GetAttribute("ID")));
+				elseif l__target__51 == l__owner__50 then
+					v1.Network.Fire("k", l__uid__49, "Player");
+				end;
+			end;
+		end;	
+	end;
+	coroutine.wrap(function()
+		if u14 then
+			if 1.5 < os.clock() - u14 then
+				u14 = os.clock();
+				local v52 = v1.Network.Invoke("x");
+				if not v52 then
+					v1.Print("Failed to get targets of other players");
+					return;
+				end;
+				local v53, v54, v55 = pairs(v52);
+				while true do
+					local v56, v57 = v53(v54, v55);
+					if v56 then
+
+					else
+						break;
+					end;
+					v55 = v56;
+					local l__t__58 = v57.t;
+					if u2[v56] then
+						if l__t__58 == "Coin" then
+							ChangePetTargetCoin(v56, v57.id);
+						elseif l__t__58 == "Player" then
+							ChangePetTargetPlayer(v56);
+						end;
+					end;				
+				end;
+			end;
+		else
+			u14 = os.clock();
+			v52 = v1.Network.Invoke("x");
+			if not v52 then
+				v1.Print("Failed to get targets of other players");
+				return;
+			end;
+			v53, v54, v55 = pairs(v52);
+			while true do
+				v56, v57 = v53(v54, v55);
+				if v56 then
+
+				else
+					break;
+				end;
+				v55 = v56;
+				l__t__58 = v57.t;
+				if u2[v56] then
+					if l__t__58 == "Coin" then
+						ChangePetTargetCoin(v56, v57.id);
+					elseif l__t__58 == "Player" then
+						ChangePetTargetPlayer(v56);
+					end;
+				end;			
+			end;
+		end;
+	end)();
+end;
+function UpdateRaycastParams()
+	local v59 = {};
+	local v60, v61, v62 = ipairs(v1.WorldCmds.GetMap():GetChildren());
+	while true do
+		v60(v61, v62);
+		if v60 then
+
+		else
+			break;
+		end;
+		v62 = v60;
+		if v61.Name ~= "Debris" then
+			if v61.Name ~= "PlayerSpawns" then
+				if v61.Name ~= "Teleports" then
+					if v61.Name ~= "Audio" then
+						table.insert(v59, v61);
+					end;
+				end;
+			end;
+		end;	
+	end;
+	u7 = RaycastParams.new();
+	u7.FilterDescendantsInstances = { v59 };
+	u7.FilterType = Enum.RaycastFilterType.Whitelist;
+	u7.IgnoreWater = true;
+end;
+v1.Signal.Fired("World Changed"):Connect(function()
+	UpdateRaycastParams();
+end);
+function UpdatePetSoundsSetting()
+	local v63 = v1.Save.Get();
+	if not v63 then
+		return;
+	end;
+	u9 = v63.Settings.PetSFX == 1;
+end;
+v1.Signal.Fired("Stat Changed"):Connect(function(p6)
+	if p6 == "Settings" then
+		UpdatePetSoundsSetting();
+	end;
+end);
+UpdatePetSoundsSetting();
+v1.Network.Fired("i"):Connect(function(p7, p8)
+	ChangePetTargetCoin(p7, p8);
+end);
+v1.Network.Fired("j"):Connect(function(p9)
+	ChangePetTargetPlayer(p9);
+end);
+v1.Network.Fired("X"):Connect(function(p10)
+	local v64 = v1.Save.Get(p10, true);
+	if not v64 or not v64.Pets then
+		return;
+	end;
+	local v65, v66, v67 = ipairs(v64.Pets);
+	while true do
+		v65(v66, v67);
+		if not v65 then
+			break;
+		end;
+		v67 = v65;
+		local l__uid__68 = v66.uid;
+		local v69 = u2[l__uid__68];
+		if v1.Shared.HasPetEquipped(v66) and v69 and not v69.farming then
+			u5(l__uid__68);
+		end;	
+	end;
+end);
+local function u15(p11, p12)
+	local v70 = v1.Save.Get();
+	if not v70 then
+		return;
+	end;
+	if not p11 then
+		return;
+	end;
+	if v70.Settings.PetsControl == 2 then
+		p12 = true;
+	end;
+	local v71 = p11:GetAttribute("ID");
+	local v72 = p11:FindFirstChild("Pets"):GetChildren();
+	local v73 = v1.Directory.Coins[p11:GetAttribute("Name")];
+	local l__POS__16 = p11:FindFirstChild("POS");
+	local function v74(p13)
+		local v75 = nil;
+		local v76 = nil;
+		local v77 = nil;
+		u3 = u3 + 1;
+		for v78, v79 in pairs(u2) do
+			if v79.owner == v1.LocalPlayer then
+				local l__Magnitude__80 = (l__POS__16.CFrame.p - v79.physical.CFrame.p).Magnitude;
+				if (not v75 or l__Magnitude__80 < v76) and (not (not p13) and not (not p13(v79)) or not p13) then
+					v75 = v78;
+					v76 = l__Magnitude__80;
+					v77 = v79;
+				end;
+			end;
+		end;
+		u3 = u3 - 1;
+		return v75, v77;
+	end;
+	local v81 = {};
+	local v82 = {};
+	if p12 then
+		u3 = u3 + 1;
+		for v83, v84 in pairs(u2) do
+			if v84.owner == v1.LocalPlayer then
+				table.insert(v81, v83);
+			end;
+		end;
+		u3 = u3 - 1;
+	else
+		local v85, v86 = v74(function(p14)
+			return not p14.farming;
+		end);
+		if v85 then
+			table.insert(v81, v85);
+		else
+			local v87, v88 = v74(function(p15)
+				return p15.farming and p15.target ~= l__POS__16;
+			end);
+			if v87 then
+				table.insert(v81, v87);
+			else
+				local v89, v90 = v74(function(p16)
+					return p16.farming and p16.target == l__POS__16;
+				end);
+				if v89 then
+					local v91 = {};
+					u3 = u3 + 1;
+					for v92, v93 in pairs(u2) do
+						if v93.owner == v1.LocalPlayer and v93.farming and v93.target == l__POS__16 then
+							table.insert(v91, v92);
+						end;
+					end;
+					u3 = u3 - 1;
+					if #v91 > 0 then
+						v82 = v91;
+					end;
+				end;
+			end;
+		end;
+	end;
+	if #v81 > 0 then
+		local v94 = v1.Network.Invoke("n", v71, v81);
+		if v1.Functions.DictionaryLength(v94) > 0 then
+			v1.Audio.Play("rbxassetid://7004964432", script);
+		end;
+		for v95, v96 in pairs(v94) do
+			if v96 then
+				local v97 = u2[v95];
+				if v97 then
+					if v97.selectionFunc then
+						v97.selectionFunc();
+						v97.selectionFunc = nil;
+					end;
+					v97.farming = true;
+					v97.target = l__POS__16;
+					v97.follower = nil;
+					v97.arrived = false;
+					v97.selectionFunc = v1.WorldFX.CoinSelection(v97.physical, p11);
+					v97.targetuid = v97.targetuid + 1;
+					v97.randomRotation = u1:NextNumber(0, 360);
+					coroutine.wrap(function()
+						while u2[v95] and v97.farming and v97.target == l__POS__16 and v97.targetuid == v97.targetuid do
+							if v97.arrived then
+								v1.Network.Fire("f", v71, v95);
+								return;
+							end;
+							wait(0.33);						
+						end;
+					end)();
+				end;
+			else
+				v1.Print("Pet failed to join coin -- " .. v95);
+			end;
+		end;
+	end;
+	if #v82 > 0 then
+		for v98, v99 in pairs((v1.Network.Invoke("o", v71, v82))) do
+			if v99 then
+				local v100 = u2[v98];
+				if v100.selectionFunc then
+					v100.selectionFunc();
+					v100.selectionFunc = nil;
+				end;
+				v100.farming = false;
+				v100.target = nil;
+			else
+				v1.Print("Pet failed to leave coin -- " .. v98);
+			end;
+		end;
+	end;
+end;
+v1.Signal.Fired("Select Coin"):Connect(function(p17)
+	u15(p17);
+end);
+v1.Signal.Fired("Group Select Coin"):Connect(function(p18)
+	u15(p18, true);
+end);
+local function u17()
+	local v101 = {};
+	u3 = u3 + 1;
+	for v102, v103 in pairs(u2) do
+		table.insert(v101, v102);
+	end;
+	u3 = u3 - 1;
+	local v104, v105, v106 = ipairs(v101);
+	while true do
+		v104(v105, v106);
+		if not v104 then
+			break;
+		end;
+		v106 = v104;
+		u5(v105);	
+	end;
+end;
+v1.Signal.Fired("World Changed"):Connect(function()
+	u17();
+end);
+v1.RunService:BindToRenderStep("PetsRender", Enum.RenderPriority.Last.Value, function(p19)
+	u6 = u6 + p19;
+	if not v1.WorldCmds.HasLoaded() then
+		return;
+	end;
+	local v107 = v1.Save.Get();
+	local v108 = v1.WorldCmds.Get();
+	local v109 = p19 * 60;
+	local v110 = {
+		pets = {}, 
+		cframes = {}
+	};
+	local v111 = {};
+	u3 = u3 + 1;
+	for v112, v113 in pairs(u2) do
+		local l__uid__114 = v113.uid;
+		local u18 = v1.PetCmds.Get(l__uid__114);
+		local v115 = (function()
+			if not u18 then
+				return "critical";
+			end;
+			local l__physical__116 = v113.physical;
+			local l__id__117 = v113.id;
+			local v118 = v1.Directory.Pets[l__id__117];
+			local l__sounds__119 = v118.sounds;
+			local l__g__120 = u18.g;
+			local l__hc__121 = u18.hc;
+			local l__fly__122 = v118.fly;
+			local v123 = v118.flySpeed and 1;
+			local v124 = v113.speed;
+			local v125 = 3.25;
+			local v126 = v113.target;
+			local l__owner__127 = v113.owner;
+			local l__farming__128 = v113.farming;
+			local l__row__129 = v113.row;
+			local l__rowPlace__130 = v113.rowPlace;
+			local l__rowTotal__131 = v113.rowTotal;
+			local v132 = v126 and v126:IsA("Player");
+			local v133 = false;
+			if l__row__129 ~= 0 then
+				v133 = false;
+				if l__rowPlace__130 ~= 0 then
+					v133 = false;
+					if l__rowTotal__131 ~= 0 then
+						v133 = v132;
+					end;
+				end;
+			end;
+			if v107.Settings.ShowOtherPets == 2 and l__owner__127 ~= v1.LocalPlayer then
+				return "critical";
+			end;
+			if v132 then
+				v126 = v126.Character;
+			end;
+			if v126 == nil or v126.Parent == nil then
+				return;
+			end;
+			if l__owner__127 == nil or l__owner__127.Parent == nil then
+				return "critical";
+			end;
+			if l__physical__116 == nil or l__physical__116.Parent == nil then
+				return "critical";
+			end;
+			if v126 and v126:IsA("Model") and not v126.PrimaryPart then
+				return;
+			end;
+			if v132 and u6 - v113.playerDistCheckTick >= 1 then
+				if l__owner__127:DistanceFromCharacter(l__physical__116.CFrame.p) >= 200 then
+					l__physical__116.CFrame = v126:GetPrimaryPartCFrame() * CFrame.new(0, 0, -5);
+				else
+					v113.playerDistCheckTick = u6;
+				end;
+			end;
+			if l__farming__128 then
+				v124 = v124 + (v107.Upgrades["Pet Walkspeed"] and 0) * 0.2;
+			end;
+			local v134, v135 = v1.Shared.HasPower(u18, "Agility");
+			if v134 then
+				v124 = v124 * v1.Shared.GetPowerDir("Agility", v135).value;
+			end;
+			local v136, v137 = v1.Shared.HasPower(u18, "Royalty");
+			if v136 then
+				v124 = v124 * 1.5;
+			end;
+			local v138 = v108 == "Void";
+			if v138 then
+				v124 = v124 * 0.4;
+			end;
+			if v132 then
+				v124 = math.min(v124, 1) + math.sin(v113.spawnTick) / 8;
+			end;
+			if l__farming__128 and not v126:IsA("Model") then
+				v126 = v126.Parent:FindFirstChild("Coin");
+				local l__Size__139 = v126.Size;
+				v125 = math.max(math.max(l__Size__139.X, l__Size__139.Z) / 2 * 1.1 + 3.5, 4.5);
+			end;
+			local l__centerAttachment__140 = v113.centerAttachment;
+			local l__bottomAttachment__141 = v113.bottomAttachment;
+			local l__CFrame__142 = l__centerAttachment__140.CFrame;
+			local l__WorldCFrame__143 = l__centerAttachment__140.WorldCFrame;
+			local l__WorldCFrame__144 = l__bottomAttachment__141.WorldCFrame;
+			local v145 = v126:IsA("Model") and v126:GetPrimaryPartCFrame() or v126.CFrame;
+			if l__farming__128 then
+				if not v113.randomRotation then
+					v113.randomRotation = u1:NextNumber(0, 360);
+				end;
+				local v146 = v145 * CFrame.Angles(0, math.rad(v113.randomRotation), 0) * CFrame.new(0, 0, v125);
+			else
+				v146 = v145 * CFrame.new(0, 0, v125);
+			end;
+			if v133 then
+				local v147 = -(3 * l__rowTotal__131 + 3) / 2 + 3 * l__rowPlace__130;
+				local v148 = v125 * l__row__129;
+				if v113.huge then
+					local l__totalHuges__149 = v113.totalHuges;
+					local l__hugePlace__150 = v113.hugePlace;
+					local v151 = math.round((l__totalHuges__149 + 1) / 3);
+					local v152 = math.round((l__hugePlace__150 + 1) / 3);
+					local v153 = math.min(l__totalHuges__149 - (v152 - 1) * 3, 3);
+					v148 = v148 + (v152 * 8 - 2);
+					v147 = -(v153 * 6 + 6) / 2 + 6 * (l__hugePlace__150 - (v152 - 1) * 3);
+				end;
+				local v154 = CFrame.new(v147, 0, v148);
+				v146 = v146 * v154;
+				v145 = v145 * v154;
+			end;
+			local l__CFrame__19 = l__physical__116.CFrame;
+			local l__Size__20 = l__physical__116.Size;
+			v113.distance = math.max(((v145.X - l__CFrame__19.X) ^ 2 + (v145.Z - l__CFrame__19.Z) ^ 2) ^ 0.5 or v113.distance, 0.01);
+			v113.raycast = (function()
+				local v155 = workspace:Raycast(l__CFrame__19.p + Vector3.new(0, l__Size__20.Y / 2, 0) + Vector3.new(0, math.max(v146.Y - l__CFrame__19.Y + 1, 0), 0) - Vector3.new(0, math.max((l__CFrame__19.Y - v146.Y) / 4, 0), 0), Vector3.new(0, -1, 0).Unit * 200, u7);
+				if not v155 then
+					return;
+				end;
+				local v156 = v155.Position;
+				local l__Normal__157 = v155.Normal;
+				if not v155.Instance then
+					v156 = nil;
+				end;
+				return v156;
+			end)() and v146;
+			v113.moving = v113.moving;
+			v113.arrived = v113.distance < v125 + 1;
+			if v113.movingTick == nil then
+				local v158 = v113.moving and u6 or v113.movingTick;
+			else
+				v158 = v113.movingTick;
+			end;
+			v113.movingTick = v158;
+			v113.randomSoundTick = v113.randomSoundTick or u6;
+			v113.walkSoundTick = v113.walkSoundTick or u6;
+			if v113.farmingTick == nil and v113.farming then
+				local v159 = v113.arrived and u6 or v113.farmingTick;
+			else
+				v159 = v113.farmingTick;
+			end;
+			v113.farmingTick = v159;
+			v113.lastMovingCheck = v113.lastMovingCheck or u6;
+			v113.lastPositionLerp = v113.lastPositionLerp or CFrame.new(v146.p) - Vector3.new(0, v146.Y, 0);
+			v113.lastRotationLerp = v113.lastRotationLerp or CFrame.new();
+			v113.lastRaycastLerp = v113.lastRaycastLerp or CFrame.new(0, v146.Y, 0);
+			v113.lastAnimationLerp = v113.lastAnimationLerp or CFrame.new();
+			v113.lastFarmingLerp = v113.lastFarmingLerp or CFrame.new();
+			v113.lastDist = v113.lastDist and 0;
+			if u6 - v113.lastMovingCheck >= 0.2 then
+				v113.lastMovingCheck = u6;
+				v113.moving = v125 + 0.5 < v113.distance;
+			end;
+			local l__distance__160 = v113.distance;
+			local l__moving__161 = v113.moving;
+			local l__spawnTick__162 = v113.spawnTick;
+			local l__movingTick__163 = v113.movingTick;
+			local l__arrived__164 = v113.arrived;
+			local l__farmingTick__165 = v113.farmingTick;
+			local v166 = v113.lastPositionLerp:Lerp(CFrame.new(v146.p) - Vector3.new(0, v146.Y, 0), math.clamp(v109 * (1 / l__distance__160) * v124, 0, 1));
+			local v167 = 0;
+			local v168 = 0;
+			if l__CFrame__19.p ~= v146.p then
+				local v169, v170, v171 = CFrame.new((l__CFrame__19 - Vector3.new(0, l__CFrame__19.Y, 0)).p, (v145 - Vector3.new(0, v145.Y, 0)).p):ToOrientation();
+				v167 = v170;
+				v168 = v171;
+			end;
+			if v118.swerve and l__moving__161 and not l__farming__128 and not l__arrived__164 then
+				local v172, v173, v174 = v145:ToOrientation();
+				local v175 = v1.Functions.RadDelta(v167, v173);
+				local v176 = math.clamp(math.abs(v175) * (v118.swerveAggression and 1) / math.pi, 0, 1);
+				v168 = v176 * v1.Functions.Sigmoid(1 - v176, nil, 3) * math.rad(v118.swerveMaxAngle and 45) * math.sign(v175);
+			end;
+			local v177 = v113.lastRotationLerp:Lerp(CFrame.fromOrientation(0, v167, v168), math.clamp(v109 * 0.2, 0, 1));
+			local v178 = v113.lastRaycastLerp:Lerp(CFrame.new(0, v113.raycast.Y, 0), math.clamp(v109 * 0.2, 0, 1));
+			if l__moving__161 then
+				local v179 = l__movingTick__163 and u6 - l__movingTick__163 or 0;
+			else
+				v179 = 0;
+			end;
+			if v138 then
+				local v180 = 4.5;
+			else
+				v180 = 11;
+			end;
+			local v181 = math.sin(v179 * v180);
+			local v182 = nil;
+			if l__fly__122 then
+				local v183 = CFrame.new(0, math.sin(u6 * (v123 * 4)) * ((v118.flyHeightChange and 1) * 0.5) + (v118.flyHeight and 1) * 3.5, 0);
+				if l__moving__161 then
+					local v184 = -0.08726646259971647;
+				else
+					v184 = 0;
+				end;
+				local v185 = CFrame.Angles(v184, 0, 0);
+			else
+				v183 = CFrame.new(0, math.abs(v181) * 3, 0);
+				v185 = CFrame.Angles(v181 / 2, 0, v181 / 8);
+			end;
+			if l__id__117 == "154" or l__id__117 == "242" then
+				v185 = v185 * CFrame.Angles(0, 0, math.rad(u6 * 100));
+			end;
+			if l__id__117 == "394" or l__id__117 == "2022" or l__id__117 == "2023" then
+				local v186 = v1.Functions.Lerp(0.95, 1.05, (1 + math.sin(u6 * (v123 * 4))) / 2);
+				v182 = Vector3.new(v186, v186, v186);
+			end;
+			if l__id__117 == "402" then
+				local l__Back__187 = l__physical__116:FindFirstChild("Back");
+				if l__Back__187 then
+					local l__Sparkles__188 = l__Back__187:FindFirstChild("Sparkles");
+					if l__Sparkles__188 then
+						l__Sparkles__188.Enabled = l__moving__161;
+					end;
+				end;
+			end;
+			if l__moving__161 then
+				local v189 = 0.5;
+			else
+				v189 = 0.2;
+			end;
+			local v190 = v113.lastAnimationLerp:Lerp(v183 * v185, math.clamp(v109 * v189, 0, 1));
+			local v191 = l__farming__128 and (l__arrived__164 and l__farmingTick__165);
+			if v191 then
+				local v192 = 0.5;
+			else
+				v192 = 0.2;
+			end;
+			local v193 = v113.lastFarmingLerp:Lerp(CFrame.Angles(0, 0, math.sin((v191 and u6 - l__farmingTick__165 or 0) * 11) / 2), math.clamp(v109 * v192, 0, 1));
+			local v194 = CFrame.new(0, l__bottomAttachment__141.CFrame:Inverse().Y, 0);
+			table.insert(v110.pets, l__physical__116);
+			table.insert(v110.cframes, v166 * v178 * v193 * v177 * v194 * v190);
+			if v138 then
+				local v195 = 0.65;
+			else
+				v195 = 0.3;
+			end;
+			if l__moving__161 and not l__fly__122 and v179 % v195 <= 0.1 and u6 - v113.walkSoundTick > 0.2 then
+				v113.walkSoundTick = u6;
+				local l__walk__196 = l__sounds__119.walk;
+				local u21 = u1:NextNumber(0.95, 1.2);
+				task.spawn(function()
+					v1.Audio.Play(u8, l__physical__116, u21, 0.01, 60);
+				end);
+			end;
+			if not l__moving__161 and u1:NextNumber() <= 0.001 and u6 - v113.randomSoundTick >= 6 and u9 then
+				v113.randomSoundTick = u6;
+				local l__random__197 = l__sounds__119.random;
+				if #l__random__197 > 0 then
+					local u22 = l__random__197[math.random(1, #l__random__197)];
+					task.spawn(function()
+						v1.Audio.Play(u22, l__physical__116, 1, 0.5, 140);
+					end);
+				end;
+			end;
+			local l__special__198 = v113.special;
+			if l__special__198 and l__special__198 == "Pixel" then
+				if l__moving__161 and not l__fly__122 and u1:NextInteger(1, 10) == 1 then
+					(function()
+						local v199 = Instance.new("Part");
+						v199.Anchored = true;
+						v199.CanCollide = false;
+						v199.CastShadow = false;
+						v199.Size = Vector3.new(1, 1, 1) * u1:NextNumber(0.4, 0.66);
+						v199.Color = Color3.fromRGB(255, 255, 255);
+						v199.CFrame = l__physical__116.CFrame + Vector3.new(u1:NextNumber(-1, 1), l__bottomAttachment__141.Position.Y + u1:NextNumber(-1, 1), u1:NextNumber(-1, 1));
+						v199.Name = "pixelFX";
+						v199.Parent = v1.Debris;
+						local v200 = u1:NextNumber(0.33, 0.6);
+						v1.Functions.Tween(v199, {
+							Size = v199.Size * u1:NextNumber(0.25, 0.4), 
+							CFrame = v199.CFrame * CFrame.new(0, 0, u1:NextNumber(1, 2)) + Vector3.new(0, u1:NextNumber(0.25, 1.5), 0)
+						}, { v200, "Linear" });
+						v1.Functions.AddDebris(v199, v200);
+					end)();
+				end;
+			end;
+			if u18.r then
+				local l__highlight__201 = v113.highlight;
+				local l__rainbowDecal__202 = v113.rainbowDecal;
+				local l__rainbowParticles__203 = v113.rainbowParticles;
+				local v204 = Color3.fromHSV(u6 / 1.5 % 1, 1, 1);
+				if l__rainbowParticles__203 then
+					l__rainbowParticles__203.Color = ColorSequence.new(v204);
+				end;
+				if l__rainbowDecal__202 then
+					l__rainbowDecal__202.Color3 = v204;
+				end;
+			end;
+			if u18.dm then
+				local l__mesh__205 = v113.mesh;
+				if l__mesh__205 then
+					local v206 = nil;
+					v206 = math.sin(u6);
+					if l__hc__121 then
+						l__mesh__205.VertexColor = Vector3.new(0.8, 13 + 7 * v206, 15 + 5 * v206);
+					else
+						l__mesh__205.VertexColor = Vector3.new(15 + 5 * v206, 0.6, 13 + 7 * v206);
+					end;
+				end;
+			end;
+			if l__hc__121 then
+				local l__hardcoreDecal__207 = v113.hardcoreDecal;
+				if l__hardcoreDecal__207 then
+					l__hardcoreDecal__207.Transparency = math.sin(u6 * 5) * 0.2 + 0.8;
+				end;
+			end;
+			if v182 then
+				local l__mesh__208 = v113.mesh;
+				if l__mesh__208 then
+					if not v113.OriginalScale then
+						v113.OriginalScale = l__mesh__208.Scale;
+					end;
+					l__mesh__208.Scale = v113.OriginalScale * v182;
+				end;
+			end;
+			if l__physical__116 then
+				local l__PropWeld__209 = l__physical__116:FindFirstChild("PropWeld");
+				if l__PropWeld__209 then
+					l__PropWeld__209.C0 = CFrame.fromOrientation(0, -2 * math.pi * (v118.propSpeed and 1) * u6, 0);
+				end;
+				local l__mesh__210 = v113.mesh;
+				if l__mesh__210 then
+					local l__Prop__211 = l__physical__116:FindFirstChild("Prop");
+					if l__Prop__211 then
+						local v212 = l__Prop__211:FindFirstChildOfClass("SpecialMesh");
+						if v212 then
+							v212.Offset = l__mesh__210.Offset;
+							v212.Scale = l__mesh__210.Scale;
+							v212.VertexColor = l__mesh__210.VertexColor;
+						end;
+					end;
+				end;
+			end;
+			local l__nicknameBillboard__213 = v113.nicknameBillboard;
+			if l__nicknameBillboard__213 then
+				l__nicknameBillboard__213.Nickname.Text = u18.nk;
+			end;
+			v113.lastPositionLerp = v166;
+			v113.lastRotationLerp = v177;
+			v113.lastRaycastLerp = v178;
+			v113.lastAnimationLerp = v190;
+			v113.lastFarmingLerp = v193;
+			v113.lastDist = l__distance__160;
+			v113.movingTick = v113.moving and v113.movingTick or nil;
+			return true;
+		end)();
+		if v115 ~= true and v115 == "critical" then
+			table.insert(v111, l__uid__114);
+		end;
+	end;
+	u3 = u3 - 1;
+	local v214, v215, v216 = ipairs(v111);
+	while true do
+		v214(v215, v216);
+		if not v214 then
+			break;
+		end;
+		v216 = v214;
+		u5(v215);	
+	end;
+	game.Workspace:BulkMoveTo(v110.pets, v110.cframes);
+end);
+local function u23()
+	local v217 = v1.Save.Get();
+	if not v217 then
+		return;
+	end;
+	if not u10 or os.clock() - u10 >= 0.2 then
+		local v218 = v217.Settings.ShowOtherPets == 2;
+		local v219, v220, v221 = ipairs(game.Players:GetPlayers());
+		while true do
+			v219(v220, v221);
+			if not v219 then
+				break;
+			end;
+			v221 = v219;
+			local v222 = v1.Save.Get(v220, true);
+			if v222 and v222.Pets and (not v218 or v220 == v1.LocalPlayer) then
+				local v223, v224, v225 = ipairs(v222.Pets);
+				while true do
+					v223(v224, v225);
+					if not v223 then
+						break;
+					end;
+					v225 = v223;
+					local l__uid__226 = v224.uid;
+					if v1.Shared.HasPetEquipped(v224) and not u2[l__uid__226] then
+						u11(l__uid__226);
+					end;				
+				end;
+			end;		
+		end;
+		u10 = os.clock();
+	end;
+	u3 = u3 + 1;
+	local v227 = {};
+	for v228, v229 in pairs(u2) do
+		local l__uid__230 = v229.uid;
+		local v231, v232 = v1.PetCmds.Get(l__uid__230);
+		if not v231 or not v1.Shared.HasPetEquipped(v231) or not v232 or not v232.Parent then
+			table.insert(v227, l__uid__230);
+		end;
+	end;
+	u3 = u3 - 1;
+	local v233, v234, v235 = ipairs(v227);
+	while true do
+		v233(v234, v235);
+		if not v233 then
+			break;
+		end;
+		v235 = v233;
+		u5(v234);	
+	end;
+	if not u12 or os.clock() - u12 > 0.2 then
+		local v236 = v1.WorldCmds.Get();
+		for v237, v238 in pairs(u2) do
+			local l__owner__239 = v238.owner;
+			if l__owner__239 ~= v1.LocalPlayer then
+				local v240 = v1.Save.Get(l__owner__239, true);
+				if not v240 or (l__IsHardcore__13 and v240.Hardcore.World or v240.World) ~= v236 then
+					u5(v238.uid);
+				end;
+			end;
+		end;
+		u12 = os.clock();
+	end;
+	local v241, v242, v243 = pairs(u2);
+	while true do
+		local v244, v245 = v241(v242, v243);
+		if not v244 then
+			break;
+		end;
+		local l__follower__246 = v245.follower;
+		local l__target__247 = v245.target;
+		local l__physical__248 = v245.physical;
+		if v245.farming and (l__target__247 == nil or l__target__247.Parent == nil) then
+			v245.farming = false;
+		end;
+		local v249, v250, v251 = pairs(u2);
+		while true do
+			local v252, v253 = v249(v250, v251);
+			if not v252 then
+				break;
+			end;
+			if l__follower__246 ~= v253.physical and v253.target == l__physical__248 then
+				v253.target = nil;
+			end;
+			if l__target__247 ~= v253.physical and v253.follower == l__physical__248 then
+				v253.follower = nil;
+			end;		
+		end;	
+	end;
+	local v254 = {};
+	local v255, v256, v257 = pairs(u2);
+	while true do
+		local v258, v259 = v255(v256, v257);
+		if not v258 then
+			break;
+		end;
+		local l__owner__260 = v259.owner;
+		local v261 = v259.target;
+		if v261 == nil or v261.Parent == nil then
+			v259.target = l__owner__260;
+			v261 = l__owner__260;
+		end;
+		if v261 == l__owner__260 then
+			if not v254[l__owner__260] then
+				v254[l__owner__260] = {
+					organized = { {} }, 
+					list = {}
+				};
+			end;
+			table.insert(v254[l__owner__260].list, v259.uid);
+		else
+			v259.row = 0;
+			v259.rowPlace = 0;
+			v259.rowTotal = 0;
+		end;	
+	end;
+	for v262, v263 in pairs(v254) do
+		table.sort(v263.list, function(p20, p21)
+			local v264 = v1.PetCmds.Get(p20);
+			local v265 = v1.PetCmds.Get(p21);
+			if not v264 then
+				return false;
+			end;
+			if not v265 then
+				return true;
+			end;
+			local v266 = v1.Directory.Pets[v264.id];
+			local v267 = v1.Directory.Pets[v265.id];
+			if v264.hc then
+				local v268 = v1.Shared.HardcorePetStrength(v264.s and 0);
+			end;
+			if v265.hc then
+				local v269 = v1.Shared.HardcorePetStrength(v265.s and 0);
+			end;
+			if v264.s == v265.s or v266.huge == v267.huge then
+				return v265.idt < v264.idt;
+			end;
+			if v266.huge or v267.huge then
+				return v267.huge;
+			end;
+			return v265.s < v264.s;
+		end);
+	end;
+	local v270, v271, v272 = pairs(v254);
+	while true do
+		local v273, v274 = v270(v271, v272);
+		if not v273 then
+			break;
+		end;
+		local l__organized__275 = v274.organized;
+		local v276, v277, v278 = ipairs(v274.list);
+		while true do
+			v276(v277, v278);
+			if not v276 then
+				break;
+			end;
+			local l__huge__279 = v1.Directory.Pets[v1.PetCmds.Get(v277).id].huge;
+			local v280 = {};
+			for v281, v282 in pairs(l__organized__275) do
+				table.insert(v280, { v281, #v282 });
+			end;
+			table.sort(v280, function(p22, p23)
+				return p22[2] < p23[2];
+			end);
+			local v283, v284, v285 = ipairs(v280);
+			while true do
+				v283(v284, v285);
+				if not v283 then
+					break;
+				end;
+				v285 = v283;
+				if not (#v280 < v284[2]) and not l__huge__279 then
+					local v286 = v284[1];
+					if not l__organized__275[v286] then
+						l__organized__275[v286] = {};
+					end;
+					table.insert(l__organized__275[v286], v277);
+					break;
+				end;
+				if #v280 <= v283 then
+					local v287 = #v280 + 1;
+					if not l__organized__275[v287] then
+						l__organized__275[v287] = {};
+					end;
+					table.insert(l__organized__275[v287], v277);
+					break;
+				end;
+				if l__huge__279 then
+					v287 = #v280 + 1;
+					if not l__organized__275[v287] then
+						l__organized__275[v287] = {};
+					end;
+					table.insert(l__organized__275[v287], v277);
+					break;
+				end;			
+			end;		
+		end;
+		local v288 = 0;
+		local v289 = 1;
+		for v290, v291 in pairs(l__organized__275) do
+			local v292, v293, v294 = ipairs(v291);
+			while true do
+				v292(v293, v294);
+				if not v292 then
+					break;
+				end;
+				v294 = v292;
+				local v295 = u2[v293];
+				if v295 then
+					v295.row = v290;
+					v295.rowPlace = v292;
+					v295.rowTotal = #v291;
+					if v295.huge then
+						v288 = v288 + 1;
+						v295.row = v289;
+						v295.hugePlace = v288;
+					else
+						v289 = math.max(v289, v290);
+					end;
+				end;			
+			end;
+		end;
+		for v296, v297 in pairs(l__organized__275) do
+			local v298, v299, v300 = ipairs(v297);
+			while true do
+				v298(v299, v300);
+				if not v298 then
+					break;
+				end;
+				v300 = v298;
+				local v301 = u2[v299];
+				if v301 and v301.huge then
+					v301.totalHuges = v288;
+				end;			
+			end;
+		end;	
+	end;
+end;
+coroutine.wrap(function()
+	while true do
+		if not v1.WorldCmds.HasLoaded() then
+			v1.Heartbeat();
+		else
+			u23();
+			NetworkUpdate();
+			v1.RenderStepped();
+		end;	
+	end;
+end)();
