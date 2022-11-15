@@ -1,0 +1,305 @@
+-- Decompiled with the Synapse X Luau decompiler.
+
+local v1 = game:GetService("RunService"):IsServer();
+local v2 = game:GetService("RunService"):IsClient();
+local l__Shared__3 = game.ReplicatedStorage:WaitForChild("Framework"):WaitForChild("Shared");
+local v4 = v1 and game.ServerScriptService:WaitForChild("Framework"):WaitForChild("Server") or game.ReplicatedStorage:WaitForChild("Framework"):WaitForChild("Client");
+local l__RunService__5 = game:GetService("RunService");
+if v1 then
+	local v6 = "SERVER |";
+else
+	v6 = "CLIENT |";
+end;
+local u1 = {};
+local u2 = {};
+local function v7(p1)
+	if p1.ClassName == "ModuleScript" then
+		u1[string.sub(p1.Name, 5)] = {};
+		table.insert(u2, {
+			Module = p1, 
+			Path = u1
+		});
+		return;
+	end;
+	if p1.ClassName == "Folder" and p1.Name ~= "Client" and p1.Name ~= "Server" then
+		local l__Name__8 = p1.Name;
+		u1[l__Name__8] = {};
+		local v9, v10, v11 = ipairs(p1:GetChildren());
+		while true do
+			v9(v10, v11);
+			if not v9 then
+				break;
+			end;
+			v11 = v9;
+			local v12 = string.sub(v10.Name, 5);
+			if l__Name__8 == "Core" or l__Name__8 == "Game" then
+				u1[v12] = {};
+				table.insert(u2, {
+					Module = v10, 
+					Path = u1
+				});
+			else
+				u1[l__Name__8][v12] = {};
+				table.insert(u2, {
+					Module = v10, 
+					Path = u1[l__Name__8]
+				});
+			end;		
+		end;
+	end;
+end;
+local function v13(p2)
+	local v14, v15, v16 = ipairs(p2:GetDescendants());
+	while true do
+		v14(v15, v16);
+		if not v14 then
+			break;
+		end;
+		v16 = v14;
+		if v15.ClassName == "ModuleScript" then
+			if string.find(v15.Name, " CUSTOM | ", 1, true) then
+				v15.Name = string.gsub(v15.Name, " CUSTOM | ", "");
+			elseif string.find(v15.Name, " EDITED | ", 1, true) then
+				v15.Name = string.gsub(v15.Name, " EDITED | ", "");
+			elseif string.find(v15.Name, "CUSTOM | ", 1, true) then
+				v15.Name = string.gsub(v15.Name, "CUSTOM | ", "");
+			elseif string.find(v15.Name, "EDITED | ", 1, true) then
+				v15.Name = string.gsub(v15.Name, "EDITED | ", "");
+			end;
+		end;	
+	end;
+end;
+v13(l__Shared__3);
+v13(v4);
+local v17, v18, v19 = ipairs(l__Shared__3:GetChildren());
+while true do
+	v17(v18, v19);
+	if not v17 then
+		break;
+	end;
+	v19 = v17;
+	v7(v18);
+end;
+local v20, v21, v22 = ipairs(v4:GetChildren());
+while true do
+	v20(v21, v22);
+	if not v20 then
+		break;
+	end;
+	v22 = v20;
+	v7(v21);
+end;
+coroutine.wrap(function()
+	if v2 then
+		while true do
+			l__RunService__5.RenderStepped:Wait();
+			if _G.IntroDone then
+				break;
+			end;		
+		end;
+		game.Players.LocalPlayer:WaitForChild("PlayerGui"):WaitForChild("Message");
+	else
+		wait();
+	end;
+	local v23 = os.clock();
+	u1.Game = game.ReplicatedStorage:WaitForChild("Game");
+	u1.Debris = game.Workspace:WaitForChild("__DEBRIS");
+	u1.Things = game.Workspace:WaitForChild("__THINGS");
+	u1.Assets = game.ReplicatedStorage:WaitForChild("Assets");
+	u1.Services = {};
+	local l__ContextActionService__24 = game:GetService("ContextActionService");
+	u1.AssetService = l__ContextActionService__24;
+	u1.Services.AssetService = l__ContextActionService__24;
+	local l__BadgeService__25 = game:GetService("BadgeService");
+	u1.BadgeService = l__BadgeService__25;
+	u1.Services.BadgeService = l__BadgeService__25;
+	local l__CollectionService__26 = game:GetService("CollectionService");
+	u1.CollectionService = l__CollectionService__26;
+	u1.Services.CollectionService = l__CollectionService__26;
+	local l__ContextActionService__27 = game:GetService("ContextActionService");
+	u1.ContextActionService = l__ContextActionService__27;
+	u1.Services.ContextActionService = l__ContextActionService__27;
+	local l__ControllerService__28 = game:GetService("ControllerService");
+	u1.ControllerService = l__ControllerService__28;
+	u1.Services.ControllerService = l__ControllerService__28;
+	local l__DataStoreService__29 = game:GetService("DataStoreService");
+	u1.DataStoreService = l__DataStoreService__29;
+	u1.Services.DataStoreService = l__DataStoreService__29;
+	local l__FriendService__30 = game:GetService("FriendService");
+	u1.FriendService = l__FriendService__30;
+	u1.Services.FriendService = l__FriendService__30;
+	local l__GamepadService__31 = game:GetService("GamepadService");
+	u1.GamepadService = l__GamepadService__31;
+	u1.Services.GamepadService = l__GamepadService__31;
+	local l__GamePassService__32 = game:GetService("GamePassService");
+	u1.GamePassService = l__GamePassService__32;
+	u1.Services.GamePassService = l__GamePassService__32;
+	local l__GroupService__33 = game:GetService("GroupService");
+	u1.GroupService = l__GroupService__33;
+	u1.Services.GroupService = l__GroupService__33;
+	local l__GuiService__34 = game:GetService("GuiService");
+	u1.GuiService = l__GuiService__34;
+	u1.Services.GuiService = l__GuiService__34;
+	local l__HapticService__35 = game:GetService("HapticService");
+	u1.HapticService = l__HapticService__35;
+	u1.Services.HapticService = l__HapticService__35;
+	local l__HttpService__36 = game:GetService("HttpService");
+	u1.HttpService = l__HttpService__36;
+	u1.Services.HttpService = l__HttpService__36;
+	local l__InsertService__37 = game:GetService("InsertService");
+	u1.InsertService = l__InsertService__37;
+	u1.Services.InsertService = l__InsertService__37;
+	local l__JointsService__38 = game:GetService("JointsService");
+	u1.JointsService = l__JointsService__38;
+	u1.Services.JointsService = l__JointsService__38;
+	local l__KeyboardService__39 = game:GetService("KeyboardService");
+	u1.KeyboardService = l__KeyboardService__39;
+	u1.Services.KeyboardService = l__KeyboardService__39;
+	local l__LocalizationService__40 = game:GetService("LocalizationService");
+	u1.LocalizationService = l__LocalizationService__40;
+	u1.Services.LocalizationService = l__LocalizationService__40;
+	local l__LoginService__41 = game:GetService("LoginService");
+	u1.LoginService = l__LoginService__41;
+	u1.Services.LoginService = l__LoginService__41;
+	local l__LogService__42 = game:GetService("LogService");
+	u1.LogService = l__LogService__42;
+	u1.Services.LogService = l__LogService__42;
+	local l__MarketplaceService__43 = game:GetService("MarketplaceService");
+	u1.MarketplaceService = l__MarketplaceService__43;
+	u1.Services.MarketplaceService = l__MarketplaceService__43;
+	local l__MouseService__44 = game:GetService("MouseService");
+	u1.MouseService = l__MouseService__44;
+	u1.Services.MouseService = l__MouseService__44;
+	local l__MessagingService__45 = game:GetService("MessagingService");
+	u1.MessagingService = l__MessagingService__45;
+	u1.Services.MessagingService = l__MessagingService__45;
+	local l__NotificationService__46 = game:GetService("NotificationService");
+	u1.NotificationService = l__NotificationService__46;
+	u1.Services.NotificationService = l__NotificationService__46;
+	local l__PathfindingService__47 = game:GetService("PathfindingService");
+	u1.PathfindingService = l__PathfindingService__47;
+	u1.Services.PathfindingService = l__PathfindingService__47;
+	local l__PhysicsService__48 = game:GetService("PhysicsService");
+	u1.PhysicsService = l__PhysicsService__48;
+	u1.Services.PhysicsService = l__PhysicsService__48;
+	local l__PointsService__49 = game:GetService("PointsService");
+	u1.PointsService = l__PointsService__49;
+	u1.Services.PointsService = l__PointsService__49;
+	local l__RunService__50 = game:GetService("RunService");
+	u1.RunService = l__RunService__50;
+	u1.Services.RunService = l__RunService__50;
+	local l__SoundService__51 = game:GetService("SoundService");
+	u1.SoundService = l__SoundService__51;
+	u1.Services.SoundService = l__SoundService__51;
+	local l__TeleportService__52 = game:GetService("TeleportService");
+	u1.TeleportService = l__TeleportService__52;
+	u1.Services.TeleportService = l__TeleportService__52;
+	local l__TextService__53 = game:GetService("TextService");
+	u1.TextService = l__TextService__53;
+	u1.Services.TextService = l__TextService__53;
+	local l__TweenService__54 = game:GetService("TweenService");
+	u1.TweenService = l__TweenService__54;
+	u1.Services.TweenService = l__TweenService__54;
+	local l__TouchInputService__55 = game:GetService("TouchInputService");
+	u1.TouchInputService = l__TouchInputService__55;
+	u1.Services.TouchInputService = l__TouchInputService__55;
+	local l__UserInputService__56 = game:GetService("UserInputService");
+	u1.UserInputService = l__UserInputService__56;
+	u1.Services.UserInputService = l__UserInputService__56;
+	local l__VRService__57 = game:GetService("VRService");
+	u1.VRService = l__VRService__57;
+	u1.Services.VRService = l__VRService__57;
+	local l__CollectionService__58 = game:GetService("CollectionService");
+	u1.CollectionService = l__CollectionService__58;
+	u1.Services.CollectionService = l__CollectionService__58;
+	local l__PolicyService__59 = game:GetService("PolicyService");
+	u1.PolicyService = l__PolicyService__59;
+	u1.Services.PolicyService = l__PolicyService__59;
+	local l__ProximityPromptService__60 = game:GetService("ProximityPromptService");
+	u1.ProximityPromptService = l__ProximityPromptService__60;
+	u1.Services.ProximityPromptService = l__ProximityPromptService__60;
+	local l__ContentProvider__61 = game:GetService("ContentProvider");
+	u1.ContentProvider = l__ContentProvider__61;
+	u1.Services.ContentProvider = l__ContentProvider__61;
+	local l__AnalyticsService__62 = game:GetService("AnalyticsService");
+	u1.AnalyticsService = l__AnalyticsService__62;
+	u1.Services.AnalyticsService = l__AnalyticsService__62;
+	local l__PermissionsService__63 = game:GetService("PermissionsService");
+	u1.PermissionsService = l__PermissionsService__63;
+	u1.Services.PermissionsService = l__PermissionsService__63;
+	local l__SocialService__64 = game:GetService("SocialService");
+	u1.SocialService = l__SocialService__64;
+	u1.Services.SocialService = l__SocialService__64;
+	if v1 then
+
+	end;
+	function u1.Heartbeat(p3)
+		for v65 = 1, p3 and 1 do
+			l__RunService__50.Heartbeat:Wait();
+		end;
+	end;
+	function u1.Stepped(p4)
+		for v66 = 1, p4 and 1 do
+			l__RunService__50.Stepped:Wait();
+		end;
+	end;
+	if v2 then
+		function u1.RenderStepped(p5)
+			for v67 = 1, p5 and 1 do
+				l__RunService__50.RenderStepped:Wait();
+			end;
+		end;
+	end;
+	if v2 then
+		u1.LocalPlayer = game.Players.LocalPlayer;
+	end;
+	for v68 = 1, 9 do
+		local v69, v70, v71 = ipairs(u2);
+		while true do
+			v69(v70, v71);
+			if not v69 then
+				break;
+			end;
+			v71 = v69;
+			local l__Module__72 = v70.Module;
+			local v73 = string.sub(l__Module__72.Name, 5);
+			if tonumber(string.sub(l__Module__72.Name, 0, 1)) == v68 then
+				local v74 = os.clock();
+				v70.Path[v73] = require(l__Module__72);
+				if os.clock() - v74 >= 1 then
+					print("\226\157\142 " .. v6 .. " _L." .. v73 .. " took " .. math.floor((os.clock() - v74) * 1000) .. "ms to load (unusual)");
+				end;
+			end;		
+		end;
+	end;
+	u1.Loaded = true;
+	table.freeze(u1);
+	print("\226\156\133 " .. v6 .. " _L took " .. math.floor((os.clock() - v23) * 1000) .. "ms to initialize!");
+	if game:GetService("RunService"):IsClient() then
+		task.spawn(function(p6)
+			local v75 = table.clone(p6);
+			setmetatable(v75, nil);
+			local function v76(p7, p8)
+				if p7 ~= p8 then
+					if typeof(p7) ~= "table" or typeof(p8) ~= "table" then
+						return false;
+					end;
+					for v77, v78 in next, p8 do
+						if rawget(p7, v77) ~= v78 then
+							return false;
+						end;
+					end;
+				end;
+				return true;
+			end;
+			while v76(getmetatable(p6), getmetatable(p6) and table.clone(local v79)) and v76(p6, v75) do
+				wait(math.random() * 15 + 1);			
+			end;
+			if pcall(_G.Blunder, Enum.MessageType.MessageWarning, "ExternalModification : Library") then
+				return;
+			end;
+			warn("ExternalModification : Library");
+		end, u1);
+	end;
+end)();
+return u1;
