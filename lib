@@ -224,17 +224,18 @@ function Library:Create(LibName)
 
 			ButtonToggle.MouseButton1Click:Connect(function()
 				transparent(ButtonToggle)
-				if ToggleFrame.BackgroundColor3 == Color3.fromRGB(170, 0, 0) then
+				if Enabled == false then
 					ToggleFrame.BackgroundColor3 = Color3.fromRGB(0, 170, 0)
+					Enabled = true
 					spawn(function()
-						while ToggleFrame.BackgroundColor3 == Color3.fromRGB(0, 170, 0) do
+						while Enabled == true do
 							pcall(call)
 						end
 					end)
-				elseif ToggleFrame.BackgroundColor3 == Color3.fromRGB(0, 170, 0) then
+				elseif Enabled == true then
+					Enabled = false
 					ToggleFrame.BackgroundColor3 = Color3.fromRGB(170, 0, 0)
 				end
-				pcall(call)
 			end)
 			UICorner_10.Parent = ToggleFrame
 
