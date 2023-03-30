@@ -210,7 +210,7 @@ function Library:Create(LibName)
 				transparent(ButtonToggle)
 				if ToggleFrame.BackgroundColor3 == Color3.fromRGB(170, 0, 0) then
 					ToggleFrame.BackgroundColor3 = Color3.fromRGB(0, 170, 0)
-				elseif ToggleFrame.BackgroundColor3 = Color3.fromRGB(0, 170, 0) then
+				elseif ToggleFrame.BackgroundColor3 == Color3.fromRGB(0, 170, 0) then
 					ToggleFrame.BackgroundColor3 = Color3.fromRGB(170, 0, 0)
 				end
 				pcall(call)
