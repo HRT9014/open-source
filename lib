@@ -230,6 +230,7 @@ function Library:Create(LibName)
 					spawn(function()
 						while Enabled == true do
 							pcall(call)
+							print(Enabled)
 						end
 					end)
 				elseif Enabled == true then
