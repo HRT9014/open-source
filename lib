@@ -4,14 +4,6 @@ local Goal = {BackgroundColor3 = Color3.new(255, 0, 0)}
 print()
 
 local Library = {}
-local icons = {
-	home_icon = 11334465909,
-	farm_icon = 11334710528,
-	esp_icon = 11334776784,
-	combat_icon = 11334570219,
-	build_icon = 11334738485,
-	info_icon = 11334794044
-}
 
 function transparent(btn)
 	spawn(function()
@@ -289,4 +281,4 @@ function Library:Create(LibName)
 	end
 	return lib
 end
-return Library, icons
+return Library
