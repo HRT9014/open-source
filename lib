@@ -236,6 +236,7 @@ function Library:Create(LibName)
 					Enabled = false
 					ToggleFrame.BackgroundColor3 = Color3.fromRGB(170, 0, 0)
 				end
+				print(Enabled)
 			end)
 			UICorner_10.Parent = ToggleFrame
 
