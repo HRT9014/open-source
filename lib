@@ -1,7 +1,6 @@
 -- VARS
 local TweeenService = game:GetService("TweenService")
 local Goal = {BackgroundColor3 = Color3.new(255, 0, 0)}
-print()
 
 local Library = {}
 
