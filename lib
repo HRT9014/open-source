@@ -6,16 +6,6 @@ print()
 local Library = {}
 
 
-local icons = {
-	home_icon = 11334465909,
-	farm_icon = 11334710528,
-	esp_icon = 11334776784,
-	combat_icon = 11334570219,
-	build_icon = 11334738485,
-	info_icon = 11334794044
-}
-
-
 function transparent(btn)
 	spawn(function()
 		local Tween1 = game:GetService("TweenService"):Create(btn,TweenInfo.new(0.05),{BackgroundTransparency=0.75})
@@ -29,6 +19,14 @@ function transparent(btn)
 end
 
 function Library:Create(LibName)
+	local icons = {
+		home_icon = 11334465909,
+		farm_icon = 11334710528,
+		esp_icon = 11334776784,
+		combat_icon = 11334570219,
+		build_icon = 11334738485,
+		info_icon = 11334794044
+	}
 	local ScreenGui = Instance.new("ScreenGui")
 	local Frame = Instance.new("Frame")
 	local UICorner = Instance.new("UICorner")
@@ -301,6 +299,6 @@ function Library:Create(LibName)
 
 		return insideTab
 	end
-	return lib
+	return lib, icons
 end
 return Library
