@@ -15,7 +15,7 @@ local icons = {
 
 function transparent(btn)
 	spawn(function()
-		local Tween1 = game:GetService("TweenService"):Create(btn,TweenInfo.new(0.05),{BackgroundTransparency=0.75})
+		local Tween1 = game:GetService("TweenService"):Create(btn,TweenInfo.new(0.05),{BackgroundTransparency=0.7})
 		local Tween2 = game:GetService("TweenService"):Create(btn,TweenInfo.new(0.1),{BackgroundTransparency=0})
 		Tween1:Play()
 		Tween1.Completed:Connect(function()
