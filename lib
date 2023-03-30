@@ -205,13 +205,13 @@ function Library:Create(LibName)
 			ToggleFrame.Parent = ButtonToggle
 			ToggleFrame.Position = UDim2.new(0.824999988, 0, 0.100000001, 0)
 			ToggleFrame.Size = UDim2.new(0.150000006, 0, 0.800000012, 0)
-			ToggleFrame.BackgroundColor3 = Color3.fromRGB(170, 0, 0)
+			ToggleFrame.BackgroundColor3 = Color3.new(170, 0, 0)
 			ButtonToggle.MouseButton1Click:Connect(function()
 				transparent(ButtonToggle)
 				if ToggleFrame.BackgroundColor3 == Color3.fromRGB(170, 0, 0) then
-					ToggleFrame.BackgroundColor3 = Color3.fromRGB(0, 170, 0)
+					ToggleFrame.BackgroundColor3 = Color3.new(0, 170, 0)
 				elseif ToggleFrame.BackgroundColor3 == Color3.fromRGB(0, 170, 0) then
-					ToggleFrame.BackgroundColor3 = Color3.fromRGB(170, 0, 0)
+					ToggleFrame.BackgroundColor3 = Color3.new(170, 0, 0)
 				end
 				pcall(call)
 			end)
