@@ -4,7 +4,14 @@ local Goal = {BackgroundColor3 = Color3.new(255, 0, 0)}
 print()
 
 local Library = {}
-
+local icons = {
+	home_icon = 11334465909,
+	farm_icon = 11334710528,
+	esp_icon = 11334776784,
+	combat_icon = 11334570219,
+	build_icon = 11334738485,
+	info_icon = 11334794044
+}
 
 function transparent(btn)
 	spawn(function()
@@ -19,14 +26,6 @@ function transparent(btn)
 end
 
 function Library:Create(LibName)
-	local icons = {
-		home_icon = 11334465909,
-		farm_icon = 11334710528,
-		esp_icon = 11334776784,
-		combat_icon = 11334570219,
-		build_icon = 11334738485,
-		info_icon = 11334794044
-	}
 	local ScreenGui = Instance.new("ScreenGui")
 	local Frame = Instance.new("Frame")
 	local UICorner = Instance.new("UICorner")
@@ -191,7 +190,7 @@ function Library:Create(LibName)
 			UIPadding.PaddingLeft = UDim.new(0.0500000007, 0)
 		end
 
-		function insideTab:addToggle(ToggleName, Enabled, call)
+		function insideTab:addToggle(ToggleName, call)
 			local ButtonToggle = Instance.new("TextButton")
 			local UICorner_9 = Instance.new("UICorner")
 			local ToggleFrame = Instance.new("Frame")
@@ -216,28 +215,14 @@ function Library:Create(LibName)
 			ToggleFrame.Position = UDim2.new(0.824999988, 0, 0.100000001, 0)
 			ToggleFrame.Size = UDim2.new(0.150000006, 0, 0.800000012, 0)
 
-			if Enabled == false then
-				ToggleFrame.BackgroundColor3 = Color3.fromRGB(170, 0, 0)
-			else
-				ToggleFrame.BackgroundColor3 = Color3.fromRGB(0, 170, 0)
-			end	
-
 			ButtonToggle.MouseButton1Click:Connect(function()
 				transparent(ButtonToggle)
-				if Enabled == false then
+				if ToggleFrame.BackgroundColor3 = Color3.fromRGB(170, 0, 0) then
 					ToggleFrame.BackgroundColor3 = Color3.fromRGB(0, 170, 0)
-					Enabled = true
-					spawn(function()
-						while Enabled == true do
-							pcall(call)
-							print(Enabled)
-						end
-					end)
-				elseif Enabled == true then
-					Enabled = false
+				elseif ToggleFrame.BackgroundColor3 = Color3.fromRGB(0, 170, 0) then
 					ToggleFrame.BackgroundColor3 = Color3.fromRGB(170, 0, 0)
 				end
-				print(Enabled)
+				pcall(call)
 			end)
 			UICorner_10.Parent = ToggleFrame
 
@@ -302,6 +287,6 @@ function Library:Create(LibName)
 
 		return insideTab
 	end
-	return lib, icons
+	return lib
 end
-return Library
+return Library, icons
