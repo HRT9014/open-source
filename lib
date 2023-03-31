@@ -331,13 +331,4 @@ function Library:Create(LibName)
 	return lib
 end
 
-local mylib = Library:Create("my ass")
-
-local shoptab = mylib:addTab('mybigass', icons.buy_icon)
-
-shoptab:addButton("bignuts", function()
-    print('big nut')
-end)
-
-
 return Library
