@@ -4,7 +4,7 @@ local Goal = {BackgroundColor3 = Color3.new(255, 0, 0)}
 
 local Library = {}
 
-local Library:icons = {
+local Library.icons = {
 	home_icon = 11334465909,
 	farm_icon = 11334710528,
 	esp_icon = 11334776784,
