@@ -3,6 +3,14 @@ local TweeenService = game:GetService("TweenService")
 local Goal = {BackgroundColor3 = Color3.new(255, 0, 0)}
 
 local Library = {}
+getgenv().icons = {
+    home_icon = 11334465909,
+    farm_icon = 11334710528,
+    esp_icon = 11334776784,
+    combat_icon = 11334570219,
+    build_icon = 11334738485,
+    info_icon = 11334794044
+}
 
 function transparent(btn)
 	spawn(function()
@@ -91,14 +99,6 @@ function Library:Create(LibName)
 	Tab_Btns_Stroke.Parent = TabBtns
 	Containers.Name = "Containers"
 	Containers.Parent = Frame
-	local Library_icons = {
-		home_icon = 11334465909,
-		farm_icon = 11334710528,
-		esp_icon = 11334776784,
-		combat_icon = 11334570219,
-		build_icon = 11334738485,
-		info_icon = 11334794044
-	}
 	local lib = {}
 
 	function lib:addTab(TabName, id)
@@ -285,6 +285,6 @@ function Library:Create(LibName)
 
 		return insideTab
 	end
-	return lib, Library_icons
+	return lib
 end
 return Library
