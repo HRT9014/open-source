@@ -39,6 +39,48 @@ function Library:Create(LibName)
 	local Tab_Btns_Corner = Instance.new("UICorner")
 	local Tab_Btns_Stroke = Instance.new("UIStroke")
 
+    --[[
+        Draggable works on mobile to 🥱
+        If this dont work then just throw you pc/mobile retard 😂
+    ]]
+    local UserInputService = game:GetService("UserInputService")
+    local gui = Frame
+    local dragging
+    local dragInput
+    local dragStart
+    local startPos
+    local function update(input)
+        local delta = input.Position - dragStart
+        gui.Position = UDim2.new(startPos.X.Scale, startPos.X.Offset + delta.X, startPos.Y.Scale, startPos.Y.Offset + delta.Y)
+    end
+    gui.InputBegan:Connect(function(input)
+        if input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch then
+            dragging = true
+            dragStart = input.Position
+            startPos = gui.Position
+            
+            input.Changed:Connect(function()
+                if input.UserInputState == Enum.UserInputState.End then
+                    dragging = false
+                end
+            end)
+        end
+    end)
+    gui.InputChanged:Connect(function(input)
+        if input.UserInputType == Enum.UserInputType.MouseMovement or input.UserInputType == Enum.UserInputType.Touch then
+            dragInput = input
+        end
+    end)
+    UserInputService.InputChanged:Connect(function(input)
+        if input == dragInput and dragging then
+            update(input)
+        end
+    end)
+    --[[
+        Draggable works on mobile to 🥱
+        If this dont work then just throw you pc/mobile retard 😂
+    ]]
+    
 	ScreenGui.Parent = game.CoreGui
 	ScreenGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
 	ScreenGui.ResetOnSpawn = false
@@ -288,4 +330,14 @@ function Library:Create(LibName)
 	end
 	return lib
 end
+
+local mylib = Library:Create("my ass")
+
+local shoptab = mylib:addTab('mybigass', icons.buy_icon)
+
+shoptab:addButton("bignuts", function()
+    print('big nut')
+end)
+
+
 return Library
