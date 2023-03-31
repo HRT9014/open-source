@@ -10,7 +10,7 @@ getgenv().icons = {
     combat_icon = 11334570219,
     build_icon = 11334738485,
     info_icon = 11334794044,
-    buy_icon = 11385419687
+    buy_icon = 11385419687,
 }
 
 function transparent(btn)
