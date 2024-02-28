@@ -1,1 +1,3 @@
-game.Players.LocalPlayer:Kick("script got patched by Aurora L")
+return {
+
+}
